@@ -252,6 +252,101 @@
     </div>
   </section>
 
+    <!-- ─────────── REVIEWS ─────────── -->
+  <section id="reviews" class="py-24" style="background:var(--cream-dark)">
+    <div class="max-w-7xl mx-auto px-5 lg:px-10">
+
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12 gap-4">
+        <div>
+          <span class="eyebrow">REVIEW</span>
+          <h2 class="text-3xl lg:text-4xl font-bold font-serif">고객님들의 생생한 후기</h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5 mr-2">
+            <button id="tabGeneral" class="tab-pill active">일반 후기</button>
+            <button id="tabKakao" class="tab-pill kakao">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.92 2 10.75c0 3.04 1.77 5.72 4.47 7.37-.17.62-.62 2.27-.71 2.62-.11.44.16.43.34.31.14-.09 2.21-1.5 3.11-2.11.91.13 1.84.2 2.79.2 5.52 0 10-3.92 10-8.75S17.52 2 12 2z"/></svg>
+              카카오톡 후기
+            </button>
+          </div>
+          <button id="reviewPrev" class="nav-arrow"><i data-lucide="chevron-left" width="16" height="16"></i></button>
+          <button id="reviewNext" class="nav-arrow"><i data-lucide="chevron-right" width="16" height="16"></i></button>
+        </div>
+      </div>
+
+      <div id="reviewInner">
+        <!-- General reviews -->
+        <div id="reviewsGeneral" class="grid lg:grid-cols-3 gap-5">
+          <div class="review-card" data-idx="0">
+            <div class="flex gap-0.5">
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+            </div>
+            <p class="quote">"욕실 청소를 맡겼는데 정말 호텔처럼 깨끗해졌어요. 케어매니저분이 구석구석 꼼꼼하게 해주셔서 너무 만족스럽습니다. 정기 구독으로 계속 이용할 예정이에요!"</p>
+            <div class="flex items-center justify-between pt-4 border-t" style="border-color:rgba(59,42,26,0.08)">
+              <div><p class="text-sm font-semibold">김○○ 님</p><p class="text-xs" style="color:var(--muted-text)">경기 의정부</p></div>
+              <span class="review-service-tag">욕실 케어</span>
+            </div>
+          </div>
+          <div class="review-card" data-idx="1">
+            <div class="flex gap-0.5">
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+            </div>
+            <p class="quote">"거실과 방 청소를 함께 신청했는데 먼지 하나 없이 말끔해졌습니다. 친환경 세제를 써서 아이 있는 집에도 안심이 돼요. 강력 추천합니다!"</p>
+            <div class="flex items-center justify-between pt-4 border-t" style="border-color:rgba(59,42,26,0.08)">
+              <div><p class="text-sm font-semibold">박○○ 님</p><p class="text-xs" style="color:var(--muted-text)">경기 양주시</p></div>
+              <span class="review-service-tag">거실 + 방 케어</span>
+            </div>
+          </div>
+          <div class="review-card" data-idx="2">
+            <div class="flex gap-0.5">
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
+            </div>
+            <p class="quote">"스탠다드 구독 패키지 이용 중인데 매달 정해진 날에 방문해 주셔서 너무 편해요. 청소 후 리포트도 보내주셔서 신뢰가 갑니다. 최고의 서비스예요!"</p>
+            <div class="flex items-center justify-between pt-4 border-t" style="border-color:rgba(59,42,26,0.08)">
+              <div><p class="text-sm font-semibold">이○○ 님</p><p class="text-xs" style="color:var(--muted-text)">경기 남양주시</p></div>
+              <span class="review-service-tag">스탠다드 구독</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kakao review -->
+        <div id="reviewsKakao" class="flex justify-center" style="display:none">
+          <div class="kakao-window">
+            <div class="kakao-header">
+              <div class="w-8 h-8 flex items-center justify-center rounded-full" style="background:#FAE100">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#3A1D00"><path d="M12 2C6.48 2 2 5.92 2 10.75c0 3.04 1.77 5.72 4.47 7.37-.17.62-.62 2.27-.71 2.62-.11.44.16.43.34.31.14-.09 2.21-1.5 3.11-2.11.91.13 1.84.2 2.79.2 5.52 0 10-3.92 10-8.75S17.52 2 12 2z"/></svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-white text-sm font-semibold leading-none">루미엔케어 고객센터</p>
+                <p class="text-xs mt-0.5" style="color:rgba(255,255,255,0.5)" id="kakaoNameArea">최○○ 님 · 경기 의정부시</p>
+              </div>
+              <span class="text-xs px-2 py-0.5 font-medium rounded-[10px]" style="background:rgba(250,225,0,0.2); color:#FAE100" id="kakaoServiceTag">욕실 케어</span>
+            </div>
+            <div class="kakao-body" id="kakaoMessages"></div>
+            <div class="kakao-footer">
+              <div class="kakao-input">메시지를 입력하세요</div>
+              <div class="kakao-send"><svg width="14" height="14" viewBox="0 0 24 24" fill="#3A1D00"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-8 gap-2" id="reviewDots"></div>
+    </div>
+  </section>
+  
   <!-- ─────────── SERVICES ─────────── -->
   <section id="services" class="py-24" style="background:var(--cream-dark)">
     <div class="max-w-7xl mx-auto px-5 lg:px-10">
@@ -356,101 +451,6 @@
           <p class="text-sm leading-relaxed" style="color:var(--muted-text)">서비스 완료 후 만족도를 확인하고 정기 관리를 이어갑니다.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ─────────── REVIEWS ─────────── -->
-  <section id="reviews" class="py-24" style="background:var(--cream-dark)">
-    <div class="max-w-7xl mx-auto px-5 lg:px-10">
-
-      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12 gap-4">
-        <div>
-          <span class="eyebrow">REVIEW</span>
-          <h2 class="text-3xl lg:text-4xl font-bold font-serif">고객님들의 생생한 후기</h2>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="flex items-center gap-1.5 mr-2">
-            <button id="tabGeneral" class="tab-pill active">일반 후기</button>
-            <button id="tabKakao" class="tab-pill kakao">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.92 2 10.75c0 3.04 1.77 5.72 4.47 7.37-.17.62-.62 2.27-.71 2.62-.11.44.16.43.34.31.14-.09 2.21-1.5 3.11-2.11.91.13 1.84.2 2.79.2 5.52 0 10-3.92 10-8.75S17.52 2 12 2z"/></svg>
-              카카오톡 후기
-            </button>
-          </div>
-          <button id="reviewPrev" class="nav-arrow"><i data-lucide="chevron-left" width="16" height="16"></i></button>
-          <button id="reviewNext" class="nav-arrow"><i data-lucide="chevron-right" width="16" height="16"></i></button>
-        </div>
-      </div>
-
-      <div id="reviewInner">
-        <!-- General reviews -->
-        <div id="reviewsGeneral" class="grid lg:grid-cols-3 gap-5">
-          <div class="review-card" data-idx="0">
-            <div class="flex gap-0.5">
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-            </div>
-            <p class="quote">"욕실 청소를 맡겼는데 정말 호텔처럼 깨끗해졌어요. 케어매니저분이 구석구석 꼼꼼하게 해주셔서 너무 만족스럽습니다. 정기 구독으로 계속 이용할 예정이에요!"</p>
-            <div class="flex items-center justify-between pt-4 border-t" style="border-color:rgba(59,42,26,0.08)">
-              <div><p class="text-sm font-semibold">김○○ 님</p><p class="text-xs" style="color:var(--muted-text)">경기 의정부</p></div>
-              <span class="review-service-tag">욕실 케어</span>
-            </div>
-          </div>
-          <div class="review-card" data-idx="1">
-            <div class="flex gap-0.5">
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-            </div>
-            <p class="quote">"거실과 방 청소를 함께 신청했는데 먼지 하나 없이 말끔해졌습니다. 친환경 세제를 써서 아이 있는 집에도 안심이 돼요. 강력 추천합니다!"</p>
-            <div class="flex items-center justify-between pt-4 border-t" style="border-color:rgba(59,42,26,0.08)">
-              <div><p class="text-sm font-semibold">박○○ 님</p><p class="text-xs" style="color:var(--muted-text)">경기 양주시</p></div>
-              <span class="review-service-tag">거실 + 방 케어</span>
-            </div>
-          </div>
-          <div class="review-card" data-idx="2">
-            <div class="flex gap-0.5">
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-              <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
-            </div>
-            <p class="quote">"스탠다드 구독 패키지 이용 중인데 매달 정해진 날에 방문해 주셔서 너무 편해요. 청소 후 리포트도 보내주셔서 신뢰가 갑니다. 최고의 서비스예요!"</p>
-            <div class="flex items-center justify-between pt-4 border-t" style="border-color:rgba(59,42,26,0.08)">
-              <div><p class="text-sm font-semibold">이○○ 님</p><p class="text-xs" style="color:var(--muted-text)">경기 남양주시</p></div>
-              <span class="review-service-tag">스탠다드 구독</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kakao review -->
-        <div id="reviewsKakao" class="flex justify-center" style="display:none">
-          <div class="kakao-window">
-            <div class="kakao-header">
-              <div class="w-8 h-8 flex items-center justify-center rounded-full" style="background:#FAE100">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="#3A1D00"><path d="M12 2C6.48 2 2 5.92 2 10.75c0 3.04 1.77 5.72 4.47 7.37-.17.62-.62 2.27-.71 2.62-.11.44.16.43.34.31.14-.09 2.21-1.5 3.11-2.11.91.13 1.84.2 2.79.2 5.52 0 10-3.92 10-8.75S17.52 2 12 2z"/></svg>
-              </div>
-              <div class="flex-1">
-                <p class="text-white text-sm font-semibold leading-none">루미엔케어 고객센터</p>
-                <p class="text-xs mt-0.5" style="color:rgba(255,255,255,0.5)" id="kakaoNameArea">최○○ 님 · 경기 의정부시</p>
-              </div>
-              <span class="text-xs px-2 py-0.5 font-medium rounded-[10px]" style="background:rgba(250,225,0,0.2); color:#FAE100" id="kakaoServiceTag">욕실 케어</span>
-            </div>
-            <div class="kakao-body" id="kakaoMessages"></div>
-            <div class="kakao-footer">
-              <div class="kakao-input">메시지를 입력하세요</div>
-              <div class="kakao-send"><svg width="14" height="14" viewBox="0 0 24 24" fill="#3A1D00"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex justify-center mt-8 gap-2" id="reviewDots"></div>
     </div>
   </section>
 
