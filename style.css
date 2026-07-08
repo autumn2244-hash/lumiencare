@@ -1500,3 +1500,16 @@ video {
     padding-bottom: 2rem;
   }
 }
+.service-range-img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:8px;
+    box-shadow:0 6px 24px rgba(59,42,26,.10);
+    transition:.3s ease;
+}
+
+.service-range-img:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 32px rgba(59,42,26,.18);
+}
