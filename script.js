@@ -120,11 +120,11 @@
       '.top-label{font-size:12px;letter-spacing:.3em;color:' + C.tan + ';font-weight:700;text-transform:uppercase;}' +
       'h1{font-size:26px;margin:10px 0 8px;}' +
       'p.sub{font-size:14px;color:' + C.mutedText + ';margin:0 0 28px;}' +
-      '.gal-scroll{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;}' +
-      '.gal-card{flex:0 0 calc(33.333% - 11px);scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 4px 16px rgba(59,42,26,.10);}' +
-      '.gal-card img{width:100%;height:220px;object-fit:cover;display:block;}' +
+      '.gal-scroll{display:flex;flex-direction:column;gap:16px;overflow-y:auto;scroll-snap-type:y mandatory;max-height:70vh;padding-right:8px;}' +
+      '.gal-card{flex:0 0 auto;scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 4px 16px rgba(59,42,26,.10);}' +
+'.gal-card img{width:100%;height:320px;object-fit:cover;display:block;}' +
       '.gal-label{padding:10px 12px;font-size:13px;font-weight:600;}' +
-      '@media(max-width:800px){.gal-card{flex:0 0 calc(70% - 11px);}}' +
+      '@media(max-width:800px){.gal-card img{height:240px;}}' +
       '.gal-nav{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}' +
       '.gal-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(59,42,26,.2);background:#fff;cursor:pointer;font-size:16px;}' +
       '.gal-btn:hover{background:' + C.brown + ';color:#fff;}' +
@@ -140,8 +140,8 @@
       '</div>' +
       '<script>' +
       'var s=document.getElementById("galScroll");' +
-      'document.getElementById("galPrev").onclick=function(){s.scrollBy({left:-320,behavior:"smooth"});};' +
-      'document.getElementById("galNext").onclick=function(){s.scrollBy({left:320,behavior:"smooth"});};' +
+      'document.getElementById("galPrev").onclick=function(){s.scrollBy({top:-340,behavior:"smooth"});};' +
+'document.getElementById("galNext").onclick=function(){s.scrollBy({top:340,behavior:"smooth"});};' +
       '<\/script>' +
       '</body></html>';
 
