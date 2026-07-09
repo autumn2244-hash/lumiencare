@@ -152,10 +152,13 @@ function openCleanCaseGallery() {
     /* 세로 스크롤 영역 */
  .gal-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 28px;
     }
-    @media (max-width: 720px) {
+    @media (max-width: 900px) {
+      .gal-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
       .gal-grid { grid-template-columns: 1fr; }
       .wrap { padding: 32px 20px 80px; }
     }
