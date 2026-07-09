@@ -104,50 +104,169 @@
     { src: "images/예시1.jpg", label: "예시 케어" }
   ];
 
-  function openCleanCaseGallery(){
-    var cards = CASE_GALLERY.map(function(item){
-      return '<div class="gal-card">' +
-        '<img src="' + item.src + '" alt="' + item.label + '" />' +
-        '<div class="gal-label">' + item.label + '</div>' +
-        '</div>';
-    }).join('');
+ // ── CLEAN CASE 갤러리 (세로 스크롤 버전 - 안정화) ──
+function openCleanCaseGallery() {
+  var cards = CASE_GALLERY.map(function(item) {
+    return `
+      <div class="gal-card">
+        <div class="gal-img-wrapper">
+          <img src="${item.src}" alt="${item.label}" />
+        </div>
+        <div class="gal-label">${item.label}</div>
+      </div>
+    `;
+  }).join('');
 
-    var html = '<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8" />' +
-      '<title>클린 케이스 갤러리 | 루미엔케어</title><style>' +
-      '*{box-sizing:border-box;}' +
-      'body{margin:0;background:' + C.cream + ';font-family:\'Noto Sans KR\', sans-serif;color:' + C.brown + ';}' +
-      '.wrap{max-width:1100px;margin:0 auto;padding:40px 24px 60px;}' +
-      '.top-label{font-size:12px;letter-spacing:.3em;color:' + C.tan + ';font-weight:700;text-transform:uppercase;}' +
-      'h1{font-size:26px;margin:10px 0 8px;}' +
-      'p.sub{font-size:14px;color:' + C.mutedText + ';margin:0 0 28px;}' +
-      '.gal-scroll{display:flex;flex-direction:column;gap:16px;overflow-y:auto;scroll-snap-type:y mandatory;max-height:70vh;padding-right:8px;}' +
-      '.gal-card{flex:0 0 auto;scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 4px 16px rgba(59,42,26,.10);}' +
-'.gal-card img{width:100%;height:320px;object-fit:cover;display:block;}' +
-      '.gal-label{padding:10px 12px;font-size:13px;font-weight:600;}' +
-      '@media(max-width:800px){.gal-card img{height:240px;}}' +
-      '.gal-nav{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}' +
-      '.gal-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(59,42,26,.2);background:#fff;cursor:pointer;font-size:16px;}' +
-      '.gal-btn:hover{background:' + C.brown + ';color:#fff;}' +
-      '</style></head><body><div class="wrap">' +
-      '<span class="top-label">CLEAN CASE</span>' +
-      '<h1>클린 케이스 갤러리</h1>' +
-      '<p class="sub">전문가의 손길로 달라진 케어 사례들을 확인해 보세요.</p>' +
-      '<div class="gal-scroll" id="galScroll">' + cards + '</div>' +
-      '<div class="gal-nav">' +
-      '<button class="gal-btn" id="galPrev">‹</button>' +
-      '<button class="gal-btn" id="galNext">›</button>' +
-      '</div>' +
-      '</div>' +
-      '<script>' +
-      'var s=document.getElementById("galScroll");' +
-      'document.getElementById("galPrev").onclick=function(){s.scrollBy({top:-340,behavior:"smooth"});};' +
-'document.getElementById("galNext").onclick=function(){s.scrollBy({top:340,behavior:"smooth"});};' +
-      '<\/script>' +
-      '</body></html>';
+  var html = `
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>클린 케이스 갤러리 | 루미엔케어</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: ${C.cream};
+      font-family: 'Noto Sans KR', sans-serif;
+      color: ${C.brown};
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .top-label {
+      font-size: 12px;
+      letter-spacing: .3em;
+      color: ${C.tan};
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    h1 { font-size: 26px; margin: 10px 0 8px; }
+    p.sub { 
+      font-size: 14px; 
+      color: ${C.mutedText}; 
+      margin-bottom: 32px; 
+    }
+    
+    /* 세로 스크롤 영역 */
+    .gal-scroll {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-height: 68vh;
+      overflow-y: auto;
+      padding-right: 12px;
+      scroll-behavior: smooth;
+    }
+    .gal-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .gal-scroll::-webkit-scrollbar-thumb {
+      background: ${C.tan};
+      border-radius: 3px;
+    }
 
-    var win = window.open("", "_blank", "width=1000,height=720");
-    if (win) { win.document.open(); win.document.write(html); win.document.close(); }
+    .gal-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(59,42,26,0.08);
+      transition: all 0.3s ease;
+    }
+    .gal-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(59,42,26,0.15);
+    }
+    .gal-img-wrapper {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 비율 */
+      overflow: hidden;
+    }
+    .gal-img-wrapper img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gal-card:hover img {
+      transform: scale(1.05);
+    }
+    .gal-label {
+      padding: 16px 20px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .gal-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .gal-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(59,42,26,0.2);
+      background: #fff;
+      color: ${C.brown};
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .gal-btn:hover {
+      background: ${C.brown};
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .gal-scroll { max-height: 65vh; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="top-label">CLEAN CASE</span>
+    <h1>클린 케이스 갤러리</h1>
+    <p class="sub">전문가의 손길로 달라진 케어 사례들을 확인해 보세요.</p>
+    
+    <div class="gal-scroll" id="galScroll">
+      ${cards}
+    </div>
+
+    <div class="gal-nav">
+      <button class="gal-btn" id="galPrev">↑</button>
+      <button class="gal-btn" id="galNext">↓</button>
+    </div>
+  </div>
+
+  <script>
+    const scrollContainer = document.getElementById('galScroll');
+    const scrollAmount = 420;
+
+    document.getElementById('galPrev').onclick = () => {
+      scrollContainer.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
+    };
+    document.getElementById('galNext').onclick = () => {
+      scrollContainer.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+    };
+  </script>
+</body>
+</html>`;
+
+  var win = window.open("", "_blank", "width=1080,height=820");
+  if (win) {
+    win.document.open();
+    win.document.write(html);
+    win.document.close();
+  } else {
+    alert("팝업이 차단되었습니다. 팝업 차단을 해제해 주세요.");
   }
+}
 
   // ── 헤더 스크롤 상태 ──
   var header = document.getElementById('siteHeader');
