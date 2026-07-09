@@ -101,7 +101,6 @@
     { src: "images/bathroom-main.jpg", label: "욕실 케어" },
     { src: "images/livingroom-main.jpg", label: "거실+방 케어" },
     { src: "images/aircon-main.jpg", label: "에어컨 케어" },
-    { src: "images/예시1.jpg", label: "예시 케어" }
   ];
 
  // ── CLEAN CASE 갤러리 (세로 스크롤 버전 - 안정화) ──
