@@ -1382,7 +1382,7 @@ video {
   .site-header.scrolled .nav-link{color:var(--brown);}
   .nav-link:hover{color:var(--tan) !important;}
 
-  .mobile-toggle{color:#fff;background:none;border:none;transition:color .2s ease;}
+  .mobile-toggle{color:#fff;background:none;border:none;transition:color .2s ease;display:flex;align-items:center;justify-content:center;}
   .site-header.scrolled .mobile-toggle{color:var(--brown);}
 
   .mobile-panel{display:none;background:var(--cream);border-top:1px solid rgba(59,42,26,0.1);}
