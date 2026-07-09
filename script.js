@@ -150,82 +150,47 @@ function openCleanCaseGallery() {
     }
     
     /* 세로 스크롤 영역 */
-    .gal-scroll {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      max-height: 68vh;
-      overflow-y: auto;
-      padding-right: 12px;
-      scroll-behavior: smooth;
+ .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
     }
-    .gal-scroll::-webkit-scrollbar {
-      width: 6px;
-    }
-    .gal-scroll::-webkit-scrollbar-thumb {
-      background: ${C.tan};
-      border-radius: 3px;
+    @media (max-width: 720px) {
+      .gal-grid { grid-template-columns: 1fr; }
+      .wrap { padding: 32px 20px 80px; }
     }
 
     .gal-card {
       background: #fff;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(59,42,26,0.08);
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .gal-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 32px rgba(59,42,26,0.15);
+      transform: translateY(-6px);
+      box-shadow: 0 14px 34px rgba(59,42,26,0.16);
     }
     .gal-img-wrapper {
-      position: relative;
-      padding-top: 56.25%; /* 16:9 비율 */
       overflow: hidden;
+      background: ${C.creamDark};
     }
     .gal-img-wrapper img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
     }
-    .gal-card:hover img {
-      transform: scale(1.05);
+    .gal-card:hover .gal-img-wrapper img {
+      transform: scale(1.04);
     }
     .gal-label {
       padding: 16px 20px;
       font-size: 15px;
       font-weight: 600;
+      border-top: 1px solid rgba(59,42,26,0.06);
     }
 
-    .gal-nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 32px;
-    }
-    .gal-btn {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      border: 1px solid rgba(59,42,26,0.2);
-      background: #fff;
-      color: ${C.brown};
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .gal-btn:hover {
-      background: ${C.brown};
-      color: #fff;
-    }
-
-    @media (max-width: 768px) {
-      .gal-scroll { max-height: 65vh; gap: 20px; }
-    }
   </style>
 </head>
 <body>
@@ -234,27 +199,10 @@ function openCleanCaseGallery() {
     <h1>클린 케이스 갤러리</h1>
     <p class="sub">전문가의 손길로 달라진 케어 사례들을 확인해 보세요.</p>
     
-    <div class="gal-scroll" id="galScroll">
-      ${cards}
-    </div>
+    <div class="gal-grid">
+  ${cards}
+</div>
 
-    <div class="gal-nav">
-      <button class="gal-btn" id="galPrev">↑</button>
-      <button class="gal-btn" id="galNext">↓</button>
-    </div>
-  </div>
-
-  <script>
-    const scrollContainer = document.getElementById('galScroll');
-    const scrollAmount = 420;
-
-    document.getElementById('galPrev').onclick = () => {
-      scrollContainer.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
-    };
-    document.getElementById('galNext').onclick = () => {
-      scrollContainer.scrollBy({ top: scrollAmount, behavior: 'smooth' });
-    };
-  </script>
 </body>
 </html>`;
 
