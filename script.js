@@ -98,9 +98,9 @@
   // ── CLEAN CASE 갤러리 ──
   // ★ 사진 추가 방법: images 폴더에 파일을 넣고, 아래 배열에 한 줄만 추가하면 됩니다.
   var CASE_GALLERY = [
-    { src: "images/욕실_케어.jpg", label: "욕실 케어" },
-    { src: "images/거실_방_케어.jpg", label: "거실+방 케어" },
-    { src: "images/에어컨_케어.jpg", label: "에어컨 케어" },
+    { src: "images/욕실메인.jpg", label: "욕실 케어" },
+    { src: "images/거실방메인.jpg", label: "거실+방 케어" },
+    { src: "images/에어컨메인.jpg", label: "에어컨 케어" },
     { src: "images/예시1.jpg", label: "예시 케어" }
   ];
 
