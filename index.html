@@ -33,14 +33,20 @@
         <button class="nav-link" data-nav="#about">회사소개</button>
       </nav>
 
-      <a href="tel:1588-1588" class="hidden lg:flex items-center gap-2 text-sm font-semibold px-5 py-2.5 text-white rounded-[3px]" style="background:var(--tan)">
-        <i data-lucide="phone" width="14" height="14"></i> 상담·예약 1588-1588
-      </a>
+     <div class="hidden lg:flex items-center gap-3">
+        <a href="tel:1588-1588" class="flex items-center gap-2 text-sm font-semibold px-5 py-2.5 text-white rounded-[3px]" style="background:var(--tan)">
+          <i data-lucide="phone" width="14" height="14"></i> 상담·예약 1588-1588
+        </a>
+
+        <!-- 카카오톡 상담 버튼: href를 실제 카카오톡 채널 채팅 링크로 교체하세요 (예: https://pf.kakao.com/_xxxxxxx/chat) -->
+        <a href="#" id="headerKakaoBtn" target="_blank" rel="noopener" aria-label="카카오톡 상담 문의"
+           class="flex items-center justify-center rounded-[3px] transition-opacity hover:opacity-85"
+           style="background:#FAE100; width:42px; height:42px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#3A1D00"><path d="M12 2C6.48 2 2 5.92 2 10.75c0 3.04 1.77 5.72 4.47 7.37-.17.62-.62 2.27-.71 2.62-.11.44.16.43.34.31.14-.09 2.21-1.5 3.11-2.11.91.13 1.84.2 2.79.2 5.52 0 10-3.92 10-8.75S17.52 2 12 2z"/></svg>
+        </a>
+      </div>
 
       <button class="lg:hidden mobile-toggle" id="mobileToggle" aria-label="메뉴 열기">
-        <i data-lucide="menu" id="iconMenu" width="24" height="24"></i>
-        <i data-lucide="x" id="iconClose" width="24" height="24" style="display:none"></i>
-      </button>
     </div>
 
     <div class="mobile-panel" id="mobilePanel">
@@ -489,7 +495,9 @@
         <a href="tel:1588-1588" class="flex items-center gap-2 text-base font-bold px-8 py-4 rounded-[3px]" style="border:1.5px solid var(--brown); color:var(--brown)">
   <i data-lucide="phone" width="18" height="18"></i> 1588-1588
 </a>
-        <a href="tel:1588-1588" class="flex items-center gap-2 text-white text-sm font-semibold px-8 py-4 rounded-[3px] transition-opacity hover:opacity-85" style="background:var(--tan)">
+        <!-- 카카오톡 상담 버튼: href를 실제 카카오톡 채널 채팅 링크로 교체하세요 (예: https://pf.kakao.com/_xxxxxxx/chat) -->
+        <a href="#" id="ctaKakaoBtn" target="_blank" rel="noopener" class="flex items-center gap-2 text-white text-sm font-semibold px-8 py-4 rounded-[3px] transition-opacity hover:opacity-85" style="background:var(--tan)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FAE100"><path d="M12 2C6.48 2 2 5.92 2 10.75c0 3.04 1.77 5.72 4.47 7.37-.17.62-.62 2.27-.71 2.62-.11.44.16.43.34.31.14-.09 2.21-1.5 3.11-2.11.91.13 1.84.2 2.79.2 5.52 0 10-3.92 10-8.75S17.52 2 12 2z"/></svg>
           상담 문의하기 <i data-lucide="arrow-right" width="15" height="15"></i>
         </a>
       </div>
