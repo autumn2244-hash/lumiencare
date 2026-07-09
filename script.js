@@ -66,63 +66,88 @@
     { q: "이웃과 함께 신청하면 할인되나요?", a: "같은 아파트·단지에서 3세대 이상 동시 신청 시 세대당 월 5,000원이 할인됩니다." }
   ];
 
-  function openFaqWindow()var win = window.open("", "_blank", "width=520,height=760");
+  function openFaqWindow(){
+    var rows = FAQ_ITEMS.map(function(item){
+      return '<div class="faq-item">' +
+        '<button class="faq-q" onclick="this.parentElement.classList.toggle(\'open\')">' +
+        '<span>' + item.q + '</span><span class="faq-arrow">›</span></button>' +
+        '<div class="faq-a"><p>' + item.a + '</p></div></div>';
+    }).join('');
+
+    var html = '<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8" />' +
+      '<title>자주 묻는 질문 | 루미엔케어</title><style>' +
+      '*{box-sizing:border-box;}' +
+      'body{margin:0;background:' + C.cream + ';font-family:\'Noto Sans KR\', sans-serif;color:' + C.brown + ';}' +
+      '.wrap{max-width:560px;margin:0 auto;padding:48px 24px 80px;}' +
+      '.top-label{font-size:12px;letter-spacing:.3em;color:' + C.tan + ';font-weight:700;text-transform:uppercase;}' +
+      'h1{font-size:26px;margin:10px 0 32px;}' +
+      '.faq-item{border-bottom:1px solid rgba(59,42,26,0.12);}' +
+      '.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 0;font-size:15px;font-weight:600;color:' + C.brown + ';display:flex;justify-content:space-between;align-items:center;cursor:pointer;}' +
+      '.faq-arrow{transition:transform .2s;color:' + C.tan + ';font-size:20px;}' +
+      '.faq-item.open .faq-arrow{transform:rotate(90deg);}' +
+      '.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}' +
+      '.faq-item.open .faq-a{max-height:200px;}' +
+      '.faq-a p{margin:0 0 18px;font-size:14px;line-height:1.7;color:' + C.mutedText + ';}' +
+      '</style></head><body><div class="wrap"><span class="top-label">FAQ</span>' +
+      '<h1>자주 묻는 질문</h1>' + rows + '</div></body></html>';
+
+    var win = window.open("", "_blank", "width=520,height=760");
     if (win) { win.document.open(); win.document.write(html); win.document.close(); }
   }
 
-+  // ── CLEAN CASE 갤러리 ──
-+  // ★ 사진 추가 방법: images 폴더에 파일을 넣고, 아래 배열에 한 줄만 추가하면 됩니다.
-+  var CASE_GALLERY = [
-+    { src: "images/욕실_케어.jpg", label: "욕실 케어" },
-+    { src: "images/거실_방_케어.jpg", label: "거실+방 케어" },
-+    { src: "images/에어컨_케어.jpg", label: "에어컨 케어" },
-+    { src: "images/예시1.jpg", label: "예시 케어" }
-+  ];
-+
-+  function openCleanCaseGallery(){
-+    var cards = CASE_GALLERY.map(function(item){
-+      return '<div class="gal-card">' +
-+        '<img src="' + item.src + '" alt="' + item.label + '" />' +
-+        '<div class="gal-label">' + item.label + '</div>' +
-+        '</div>';
-+    }).join('');
-+
-+    var html = '<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8" />' +
-+      '<title>클린 케이스 갤러리 | 루미엔케어</title><style>' +
-+      '*{box-sizing:border-box;}' +
-+      'body{margin:0;background:' + C.cream + ';font-family:\'Noto Sans KR\', sans-serif;color:' + C.brown + ';}' +
-+      '.wrap{max-width:1100px;margin:0 auto;padding:40px 24px 60px;}' +
-+      '.top-label{font-size:12px;letter-spacing:.3em;color:' + C.tan + ';font-weight:700;text-transform:uppercase;}' +
-+      'h1{font-size:26px;margin:10px 0 8px;}' +
-+      'p.sub{font-size:14px;color:' + C.mutedText + ';margin:0 0 28px;}' +
-+      '.gal-scroll{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;}' +
-+      '.gal-card{flex:0 0 calc(33.333% - 11px);scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 4px 16px rgba(59,42,26,.10);}' +
-+      '.gal-card img{width:100%;height:220px;object-fit:cover;display:block;}' +
-+      '.gal-label{padding:10px 12px;font-size:13px;font-weight:600;}' +
-+      '@media(max-width:800px){.gal-card{flex:0 0 calc(70% - 11px);}}' +
-+      '.gal-nav{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}' +
-+      '.gal-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(59,42,26,.2);background:#fff;cursor:pointer;font-size:16px;}' +
-+      '.gal-btn:hover{background:' + C.brown + ';color:#fff;}' +
-+      '</style></head><body><div class="wrap">' +
-+      '<span class="top-label">CLEAN CASE</span>' +
-+      '<h1>클린 케이스 갤러리</h1>' +
-+      '<p class="sub">전문가의 손길로 달라진 케어 사례들을 확인해 보세요.</p>' +
-+      '<div class="gal-scroll" id="galScroll">' + cards + '</div>' +
-+      '<div class="gal-nav">' +
-+      '<button class="gal-btn" id="galPrev">‹</button>' +
-+      '<button class="gal-btn" id="galNext">›</button>' +
-+      '</div>' +
-+      '</div>' +
-+      '<script>' +
-+      'var s=document.getElementById("galScroll");' +
-+      'document.getElementById("galPrev").onclick=function(){s.scrollBy({left:-320,behavior:"smooth"});};' +
-+      'document.getElementById("galNext").onclick=function(){s.scrollBy({left:320,behavior:"smooth"});};' +
-+      '<\/script>' +
-+      '</body></html>';
-+
-+    var win = window.open("", "_blank", "width=1000,height=720");
-+    if (win) { win.document.open(); win.document.write(html); win.document.close(); }
-+  }
+  // ── CLEAN CASE 갤러리 ──
+  // ★ 사진 추가 방법: images 폴더에 파일을 넣고, 아래 배열에 한 줄만 추가하면 됩니다.
+  var CASE_GALLERY = [
+    { src: "images/욕실_케어.jpg", label: "욕실 케어" },
+    { src: "images/거실_방_케어.jpg", label: "거실+방 케어" },
+    { src: "images/에어컨_케어.jpg", label: "에어컨 케어" },
+    { src: "images/예시1.jpg", label: "예시 케어" }
+  ];
+
+  function openCleanCaseGallery(){
+    var cards = CASE_GALLERY.map(function(item){
+      return '<div class="gal-card">' +
+        '<img src="' + item.src + '" alt="' + item.label + '" />' +
+        '<div class="gal-label">' + item.label + '</div>' +
+        '</div>';
+    }).join('');
+
+    var html = '<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8" />' +
+      '<title>클린 케이스 갤러리 | 루미엔케어</title><style>' +
+      '*{box-sizing:border-box;}' +
+      'body{margin:0;background:' + C.cream + ';font-family:\'Noto Sans KR\', sans-serif;color:' + C.brown + ';}' +
+      '.wrap{max-width:1100px;margin:0 auto;padding:40px 24px 60px;}' +
+      '.top-label{font-size:12px;letter-spacing:.3em;color:' + C.tan + ';font-weight:700;text-transform:uppercase;}' +
+      'h1{font-size:26px;margin:10px 0 8px;}' +
+      'p.sub{font-size:14px;color:' + C.mutedText + ';margin:0 0 28px;}' +
+      '.gal-scroll{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;}' +
+      '.gal-card{flex:0 0 calc(33.333% - 11px);scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 4px 16px rgba(59,42,26,.10);}' +
+      '.gal-card img{width:100%;height:220px;object-fit:cover;display:block;}' +
+      '.gal-label{padding:10px 12px;font-size:13px;font-weight:600;}' +
+      '@media(max-width:800px){.gal-card{flex:0 0 calc(70% - 11px);}}' +
+      '.gal-nav{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}' +
+      '.gal-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(59,42,26,.2);background:#fff;cursor:pointer;font-size:16px;}' +
+      '.gal-btn:hover{background:' + C.brown + ';color:#fff;}' +
+      '</style></head><body><div class="wrap">' +
+      '<span class="top-label">CLEAN CASE</span>' +
+      '<h1>클린 케이스 갤러리</h1>' +
+      '<p class="sub">전문가의 손길로 달라진 케어 사례들을 확인해 보세요.</p>' +
+      '<div class="gal-scroll" id="galScroll">' + cards + '</div>' +
+      '<div class="gal-nav">' +
+      '<button class="gal-btn" id="galPrev">‹</button>' +
+      '<button class="gal-btn" id="galNext">›</button>' +
+      '</div>' +
+      '</div>' +
+      '<script>' +
+      'var s=document.getElementById("galScroll");' +
+      'document.getElementById("galPrev").onclick=function(){s.scrollBy({left:-320,behavior:"smooth"});};' +
+      'document.getElementById("galNext").onclick=function(){s.scrollBy({left:320,behavior:"smooth"});};' +
+      '<\/script>' +
+      '</body></html>';
+
+    var win = window.open("", "_blank", "width=1000,height=720");
+    if (win) { win.document.open(); win.document.write(html); win.document.close(); }
+  }
 
   // ── 헤더 스크롤 상태 ──
   var header = document.getElementById('siteHeader');
@@ -160,9 +185,10 @@
 
   // ── FAQ 버튼 ──
   document.getElementById('footerFaqBtn').addEventListener('click', openFaqWindow);
-+  // ── CLEAN CASE 더보기 버튼 ──
-+  var cleanCaseMoreBtn = document.getElementById('cleanCaseMoreBtn');
-+  if (cleanCaseMoreBtn) cleanCaseMoreBtn.addEventListener('click', openCleanCaseGallery);
+
+  // ── CLEAN CASE 더보기 버튼 ──
+  var cleanCaseMoreBtn = document.getElementById('cleanCaseMoreBtn');
+  if (cleanCaseMoreBtn) cleanCaseMoreBtn.addEventListener('click', openCleanCaseGallery);
 
   // ── 후기 캐러셀 ──
   var REVIEWS_LEN = 3;
