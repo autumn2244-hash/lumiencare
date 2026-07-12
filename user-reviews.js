@@ -1,3 +1,4 @@
+
 (function(){
   const firebaseConfig = {
     apiKey: "AIzaSyBAST4ycfLq7B5X673Irunv1-9BwGIrHlg",
@@ -9,7 +10,7 @@
   };
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
-
+ 
   const toggleBtn = document.getElementById('toggleReviewFormBtn');
   const formWrap = document.getElementById('reviewFormWrap');
   const form = document.getElementById('userReviewForm');
@@ -24,10 +25,10 @@
   const removePhotoBtn = document.getElementById('urRemovePhoto');
   const submitBtn = document.getElementById('urSubmitBtn');
   const msgEl = document.getElementById('urMsg');
-
+ 
   let rating = 5;
   let photoBase64 = null;
-
+ 
   Array.prototype.forEach.call(starsWrap.children, function(btn){
     btn.addEventListener('click', function(){
       rating = parseInt(btn.getAttribute('data-star'), 10);
@@ -41,17 +42,17 @@
     });
   }
   renderStars();
-
+ 
   contentEl.addEventListener('input', function(){
     countEl.textContent = contentEl.value.length;
   });
-
+ 
   toggleBtn.addEventListener('click', function(){
     var isOpen = formWrap.style.display !== 'none';
     formWrap.style.display = isOpen ? 'none' : 'block';
     toggleBtn.textContent = isOpen ? '후기 작성하기' : '접기';
   });
-
+ 
   // 사진을 캔버스로 리사이즈 + 압축해서 base64로 변환 (Storage 없이 Firestore에 직접 저장)
   function compressImage(file, callback){
     var reader = new FileReader();
@@ -71,7 +72,7 @@
     };
     reader.readAsDataURL(file);
   }
-
+ 
   photoInput.addEventListener('change', function(){
     var file = photoInput.files[0];
     if (!file) return;
@@ -98,40 +99,40 @@
     photoInput.value = '';
     previewWrap.style.display = 'none';
   });
-
+ 
   function canSubmit(){
     var last = localStorage.getItem('lc_last_review_time');
     if (!last) return true;
     return (Date.now() - parseInt(last, 10)) > 60000;
   }
-
+ 
   form.addEventListener('submit', function(e){
     e.preventDefault();
     msgEl.textContent = '';
-
+ 
     var honeypot = document.getElementById('urWebsite').value;
     if (honeypot) { return; }
-
+ 
     if (!canSubmit()) {
       msgEl.textContent = '잠시 후 다시 시도해 주세요. (스팸 방지)';
       msgEl.style.color = '#c0392b';
       return;
     }
-
+ 
     var name = document.getElementById('urName').value.trim() || '익명';
     var area = document.getElementById('urArea').value.trim();
     var service = document.getElementById('urService').value;
     var content = contentEl.value.trim();
-
+ 
     if (!content) {
       msgEl.textContent = '후기 내용을 입력해 주세요.';
       msgEl.style.color = '#c0392b';
       return;
     }
-
+ 
     submitBtn.disabled = true;
     submitBtn.textContent = '등록 중...';
-
+ 
     db.collection('reviews').add({
       name: name,
       area: area,
@@ -163,27 +164,55 @@
       submitBtn.textContent = '후기 등록하기';
     });
   });
-
+ 
+  // ────────────────────────────────────────────
+  // 수정 포인트:
+  // 1) where + orderBy 조합(복합 색인 필요)을 없애고
+  //    orderBy만 서버에 요청 → 승인 여부는 받아온 뒤 자바스크립트에서 필터링
+  //    → Firestore 콘솔에서 별도 색인을 만들 필요가 없어짐
+  // 2) 에러가 나면 콘솔뿐 아니라 화면(#urEmpty)에도 표시
+  //    → 색인 문제/보안 규칙 문제 등이 있을 때 "그냥 안 보임" 대신 원인 확인 가능
+  // ────────────────────────────────────────────
   function loadReviews(){
     db.collection('reviews')
-      .where('status', '==', 'approved')
       .orderBy('createdAt', 'desc')
-      .limit(30)
+      .limit(50)
       .get()
       .then(function(snap){
         listEl.innerHTML = '';
-        if (snap.empty) {
+ 
+        var approved = [];
+        snap.forEach(function(doc){
+          var data = doc.data();
+          if (data.status === 'approved') {
+            approved.push(data);
+          }
+        });
+ 
+        if (approved.length === 0) {
+          emptyEl.textContent = '아직 등록된 후기가 없습니다. 첫 번째 후기를 남겨보세요!';
+          emptyEl.style.color = '';
           emptyEl.style.display = 'block';
           return;
         }
+ 
         emptyEl.style.display = 'none';
-        snap.forEach(function(doc){
-          listEl.appendChild(renderCard(doc.data()));
+        approved.slice(0, 30).forEach(function(data){
+          listEl.appendChild(renderCard(data));
         });
       })
-      .catch(function(err){ console.error(err); });
+      .catch(function(err){
+        console.error('리뷰 로드 오류:', err);
+        listEl.innerHTML = '';
+        emptyEl.style.display = 'block';
+        emptyEl.style.color = '#c0392b';
+        emptyEl.textContent =
+          '후기를 불러오는 중 문제가 발생했습니다. (오류: ' +
+          (err && err.code ? err.code : err) +
+          ') — F12 콘솔을 확인해 주세요.';
+      });
   }
-
+ 
   function renderCard(r){
     var card = document.createElement('div');
     card.className = 'review-card current';
@@ -203,12 +232,13 @@
       '</div>';
     return card;
   }
-
+ 
   function escapeHtml(str){
     var div = document.createElement('div');
     div.textContent = str || '';
     return div.innerHTML;
   }
-
+ 
   loadReviews();
 })();
+ 
