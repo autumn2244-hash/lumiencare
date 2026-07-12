@@ -265,9 +265,23 @@ function openCleanCaseGallery() {
   // ★ 카카오톡 후기 사진 추가 방법: images/카카오톡 폴더에 파일을 넣고,
   //    아래 배열에 실제 파일명으로 한 줄씩 추가/수정하면 됩니다.
   var KAKAO_PHOTOS = [
-    { src: "images/카카오톡/review1.jpg", alt: "카카오톡 후기 1" },
-    { src: "images/카카오톡/review2.jpg", alt: "카카오톡 후기 2" },
-    { src: "images/카카오톡/review3.jpg", alt: "카카오톡 후기 3" }
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767.png", alt: "카카오톡 후기 1" },
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767_01.png", alt: "카카오톡 후기 2" },
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767_02.png", alt: "카카오톡 후기 3" },
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767_03.png", alt: "카카오톡 후기 4" },
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767_04.png", alt: "카카오톡 후기 5" },
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767_05.png", alt: "카카오톡 후기 6" },
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767_06.png", alt: "카카오톡 후기 7" },
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767_07.png", alt: "카카오톡 후기 8" },
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767_08.png", alt: "카카오톡 후기 9" },
+    { src: "images/카카오톡/KakaoTalk_20260712_194431767_09.png", alt: "카카오톡 후기 10" },
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897.png", alt: "카카오톡 후기 11" }
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_01.png", alt: "카카오톡 후기 12" }
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_02.png", alt: "카카오톡 후기 13" }
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_03.png", alt: "카카오톡 후기 14" }
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_04.png", alt: "카카오톡 후기 15" }
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_05.png", alt: "카카오톡 후기 16" }
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_06.png", alt: "카카오톡 후기 17" }
   ];
   var TOTAL = REVIEWS_LEN + 1;
 
