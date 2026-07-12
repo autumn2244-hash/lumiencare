@@ -384,6 +384,76 @@
     </div>
   </section>
   
+<!-- ─────────── USER REVIEWS (직접 작성 후기) ─────────── -->
+  <section id="userReviews" class="py-20" style="background:var(--cream-dark)">
+    <div class="max-w-7xl mx-auto px-5 lg:px-10">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-10 gap-4">
+        <div>
+          <span class="eyebrow">SHARE YOUR STORY</span>
+          <h2 class="text-3xl lg:text-4xl font-bold font-serif">직접 남겨주시는 후기</h2>
+          <p class="text-base mt-2" style="color:var(--muted-text)">이용하신 서비스는 어떠셨나요? 다른 고객님들께 큰 도움이 됩니다.</p>
+        </div>
+        <button id="toggleReviewFormBtn" class="outline-btn">후기 작성하기</button>
+      </div>
+
+      <div id="reviewFormWrap" class="user-review-form" style="display:none">
+        <form id="userReviewForm">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="ur-label">이름 (닉네임 가능)</label>
+              <input type="text" id="urName" class="ur-input" placeholder="예: 김OO" maxlength="20" required />
+            </div>
+            <div>
+              <label class="ur-label">지역 (선택)</label>
+              <input type="text" id="urArea" class="ur-input" placeholder="예: 경기 의정부" maxlength="20" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="ur-label">이용 서비스</label>
+              <select id="urService" class="ur-input">
+                <option>욕실 케어</option>
+                <option>거실+방 케어</option>
+                <option>주방 청소</option>
+                <option>에어컨 케어</option>
+                <option>프리미엄 구독</option>
+              </select>
+            </div>
+            <div>
+              <label class="ur-label">별점</label>
+              <div id="urStars" class="ur-stars">
+                <button type="button" data-star="1">★</button>
+                <button type="button" data-star="2">★</button>
+                <button type="button" data-star="3">★</button>
+                <button type="button" data-star="4">★</button>
+                <button type="button" data-star="5">★</button>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="ur-label">후기 내용</label>
+            <textarea id="urContent" class="ur-input" rows="4" maxlength="500" placeholder="서비스 이용 경험을 자유롭게 남겨주세요." required></textarea>
+            <p class="ur-counter"><span id="urCount">0</span> / 500</p>
+          </div>
+          <div class="mb-6">
+            <label class="ur-label">사진 첨부 (선택, 5MB 이하)</label>
+            <input type="file" id="urPhoto" accept="image/*" class="ur-file" />
+            <div id="urPreviewWrap" class="ur-preview-wrap" style="display:none">
+              <img id="urPreviewImg" alt="첨부 사진 미리보기" />
+              <button type="button" id="urRemovePhoto">✕</button>
+            </div>
+          </div>
+          <input type="text" id="urWebsite" name="website" class="ur-honeypot" tabindex="-1" autocomplete="off" />
+          <button type="submit" id="urSubmitBtn" class="pkg-cta" style="max-width:220px">후기 등록하기</button>
+          <p id="urMsg" class="ur-msg"></p>
+        </form>
+      </div>
+
+      <div id="userReviewList" class="grid grid-cols-1 lg:grid-cols-3 gap-5"></div>
+      <div id="urEmpty" class="ur-empty" style="display:none">아직 등록된 후기가 없습니다. 첫 번째 후기를 남겨보세요!</div>
+    </div>
+  </section>
+
   <!-- ─────────── SERVICES ─────────── -->
   <section id="services" class="py-20" style="background:var(--cream)">
     <div class="max-w-7xl mx-auto px-5 lg:px-10">
@@ -588,5 +658,11 @@
 </div>
 
 <script src="script.js?v=3"></script>
+
+<!-- Firebase SDK (Compat 버전) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+<script src="user-reviews.js"></script>
 </body>
 </html>

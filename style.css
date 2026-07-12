@@ -1513,3 +1513,26 @@ video {
     transform:translateY(-4px);
     box-shadow:0 12px 32px rgba(59,42,26,.18);
 }
+
+.user-review-form{
+    padding:2rem;
+    border:1px solid rgba(59,42,26,0.12);
+    border-radius:4px;
+    background:#fff;
+    margin-bottom:1.5rem;
+}
+.ur-label{display:block;font-size:.8rem;font-weight:600;margin-bottom:.4rem;color:var(--brown);}
+.ur-input{width:100%;padding:.65rem .8rem;border:1px solid rgba(59,42,26,0.18);border-radius:3px;font-size:.875rem;font-family:inherit;background:#fff;color:var(--brown);box-sizing:border-box;}
+.ur-input:focus{outline:none;border-color:var(--tan);}
+.ur-counter{font-size:.7rem;color:var(--muted-text);text-align:right;margin-top:.25rem;}
+.ur-stars{display:flex;gap:.25rem;}
+.ur-stars button{font-size:1.5rem;line-height:1;background:none;border:none;color:#ddd;padding:0;}
+.ur-stars button.active{color:var(--tan);}
+.ur-file{font-size:.8rem;}
+.ur-preview-wrap{position:relative;display:inline-block;margin-top:.75rem;}
+.ur-preview-wrap img{width:120px;height:120px;object-fit:cover;border-radius:4px;}
+.ur-preview-wrap button{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:var(--brown);color:#fff;border:none;font-size:.7rem;cursor:pointer;}
+.ur-honeypot{position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;}
+.ur-msg{font-size:.8rem;margin-top:.75rem;}
+.ur-card-photo{width:100%;height:160px;object-fit:cover;border-radius:3px;margin-top:.75rem;}
+.ur-empty{text-align:center;padding:3rem 0;color:var(--muted-text);font-size:.9rem;}
