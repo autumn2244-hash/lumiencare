@@ -1598,3 +1598,32 @@ video {
 }
 .ur-submit-btn:hover{opacity:.85;}
 .ur-submit-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+/* ── 직접 작성 후기 목록: 모바일은 가로 스와이프(1개씩), 데스크톱은 3열 그리드 ── */
+.ur-review-list{
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  gap:1.25rem;
+  padding-bottom:.5rem;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.ur-review-list::-webkit-scrollbar{
+  display:none;
+}
+.ur-review-list > .review-card{
+  flex:0 0 100%;
+  scroll-snap-align:center;
+}
+
+@media (min-width:1024px){
+  .ur-review-list{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    overflow-x:visible;
+  }
+  .ur-review-list > .review-card{
+    flex:none;
+  }
+}

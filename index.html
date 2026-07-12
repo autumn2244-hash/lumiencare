@@ -24,7 +24,7 @@
 </script>
 
 <!-- 로컬 스타일시트 (Tailwind 정적 빌드 + 폰트 @font-face + 커스텀 스타일, 전부 포함) -->
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=5" />
 
 <!-- 아이콘은 CDN 없이 script.js 안에 데이터로 내장되어 있습니다 -->
 </head>
@@ -432,8 +432,8 @@
           </div>
           <div class="mb-4">
             <label class="ur-label">후기 내용</label>
-            <textarea id="urContent" class="ur-input" rows="4" maxlength="500" placeholder="서비스 이용 경험을 자유롭게 남겨주세요." required></textarea>
-            <p class="ur-counter"><span id="urCount">0</span> / 500</p>
+            <textarea id="urContent" class="ur-input" rows="4" maxlength="200" placeholder="서비스 이용 경험을 자유롭게 남겨주세요." required></textarea>
+            <p class="ur-counter"><span id="urCount">0</span> / 200</p>
           </div>
           <div class="mb-6">
             <label class="ur-label">사진 첨부 (선택, 5MB 이하)</label>
@@ -449,7 +449,7 @@
         </form>
       </div>
 
-      <div id="userReviewList" class="grid grid-cols-1 lg:grid-cols-3 gap-5"></div>
+      <div id="userReviewList" class="ur-review-list"></div>
       <div id="urEmpty" class="ur-empty" style="display:none">아직 등록된 후기가 없습니다. 첫 번째 후기를 남겨보세요!</div>
     </div>
   </section>
