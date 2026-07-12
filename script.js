@@ -282,15 +282,29 @@ function openCleanCaseGallery() {
     { src: "images/카카오톡/KakaoTalk_20260712_195704897_06.png", alt: "카카오톡 후기 17" }
   ];
 
+  // ★ 문자 후기 사진 추가 방법: images/문자후기 폴더에 파일을 넣고,
+  //    아래 배열에 실제 파일명으로 한 줄씩 추가/수정하면 됩니다.
+  var TEXT_REVIEW_PHOTOS = [
+    { src: "images/문자후기/KakaoTalk_20260712_234310020.png", alt: "문자 후기 1" }
+  ];
+
   var reviewTrack = document.getElementById('reviewTrack');
   var tabGeneral = document.getElementById('tabGeneral');
   var tabKakao = document.getElementById('tabKakao');
   var reviewDots = document.getElementById('reviewDots');
   var reviewsSection = document.getElementById('reviews');
 
-  var GENERAL_COUNT = reviewTrack.querySelectorAll('.review-card').length; // 3
+  // 문자 후기 사진 카드를 트랙 맨 앞에 붙임 (최초 1회)
+  TEXT_REVIEW_PHOTOS.forEach(function(p){
+    var card = document.createElement('div');
+    card.className = 'kakao-photo-card';
+    card.innerHTML = '<img src="' + p.src + '" alt="' + p.alt + '" loading="lazy" />';
+    reviewTrack.appendChild(card);
+  });
 
-  // 카카오톡 사진 카드를 트랙 맨 뒤에 이어붙임 (최초 1회, 일반 후기 뒤로 자연스럽게 연결)
+  var GENERAL_COUNT = TEXT_REVIEW_PHOTOS.length;
+
+  // 카카오톡 사진 카드를 트랙 뒤에 이어붙임 (최초 1회, 문자 후기 뒤로 자연스럽게 연결)
   KAKAO_PHOTOS.forEach(function(p){
     var card = document.createElement('div');
     card.className = 'kakao-photo-card';
