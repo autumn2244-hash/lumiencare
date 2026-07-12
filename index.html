@@ -24,7 +24,7 @@
 </script>
 
 <!-- 로컬 스타일시트 (Tailwind 정적 빌드 + 폰트 @font-face + 커스텀 스타일, 전부 포함) -->
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=7" />
 
 <!-- 아이콘은 CDN 없이 script.js 안에 데이터로 내장되어 있습니다 -->
 </head>
@@ -358,25 +358,9 @@
           </div>
         </div>
 
-        <!-- Kakao review -->
-        <div id="reviewsKakao" class="flex justify-center" style="display:none">
-          <div class="kakao-window">
-            <div class="kakao-header">
-              <div class="w-8 h-8 flex items-center justify-center rounded-full" style="background:#FAE100">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="#3A1D00"><path d="M12 2C6.48 2 2 5.92 2 10.75c0 3.04 1.77 5.72 4.47 7.37-.17.62-.62 2.27-.71 2.62-.11.44.16.43.34.31.14-.09 2.21-1.5 3.11-2.11.91.13 1.84.2 2.79.2 5.52 0 10-3.92 10-8.75S17.52 2 12 2z"/></svg>
-              </div>
-              <div class="flex-1">
-                <p class="text-white text-sm font-semibold leading-none">루미엔케어 고객센터</p>
-                <p class="text-xs mt-0.5" style="color:rgba(255,255,255,0.5)" id="kakaoNameArea">최○○ 님 · 경기 의정부시</p>
-              </div>
-              <span class="text-xs px-2 py-0.5 font-medium rounded-[10px]" style="background:rgba(250,225,0,0.2); color:#FAE100" id="kakaoServiceTag">욕실 케어</span>
-            </div>
-            <div class="kakao-body" id="kakaoMessages"></div>
-            <div class="kakao-footer">
-              <div class="kakao-input">메시지를 입력하세요</div>
-              <div class="kakao-send"><svg width="14" height="14" viewBox="0 0 24 24" fill="#3A1D00"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></div>
-            </div>
-          </div>
+        <!-- Kakao review photos -->
+        <div id="reviewsKakao" style="display:none">
+          <div id="kakaoPhotoTrack" class="kakao-photo-track"></div>
         </div>
       </div>
 
@@ -432,8 +416,8 @@
           </div>
           <div class="mb-4">
             <label class="ur-label">후기 내용</label>
-            <textarea id="urContent" class="ur-input" rows="4" maxlength="500" placeholder="서비스 이용 경험을 자유롭게 남겨주세요." required></textarea>
-            <p class="ur-counter"><span id="urCount">0</span> / 500</p>
+            <textarea id="urContent" class="ur-input" rows="4" maxlength="200" placeholder="서비스 이용 경험을 자유롭게 남겨주세요." required></textarea>
+            <p class="ur-counter"><span id="urCount">0</span> / 200</p>
           </div>
           <div class="mb-6">
             <label class="ur-label">사진 첨부 (선택, 5MB 이하)</label>
@@ -449,7 +433,7 @@
         </form>
       </div>
 
-      <div id="userReviewList" class="grid grid-cols-1 lg:grid-cols-3 gap-5"></div>
+      <div id="userReviewList" class="ur-review-list"></div>
       <div id="urEmpty" class="ur-empty" style="display:none">아직 등록된 후기가 없습니다. 첫 번째 후기를 남겨보세요!</div>
     </div>
   </section>
@@ -657,11 +641,11 @@
 
 </div>
 
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 
 <!-- Firebase SDK (Compat 버전) -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="user-reviews.js?v=1"></script>
+<script src="user-reviews.js?v=3"></script>
 </body>
 </html>
