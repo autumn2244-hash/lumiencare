@@ -1390,7 +1390,7 @@ video {
   .mobile-nav-link{
     text-align:left;font-size:.875rem;font-weight:500;padding:.65rem 0;
     color:var(--brown);border-bottom:1px solid rgba(59,42,26,0.07);
-    background:none;border-left:none;border-right:none;border-top:none;width:100%;review
+    background:none;border-left:none;border-right:none;border-top:none;width:100%;
   }
 
   /* ── Hero trust strip ── */

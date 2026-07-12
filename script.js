@@ -275,12 +275,12 @@ function openCleanCaseGallery() {
     { src: "images/카카오톡/KakaoTalk_20260712_194431767_07.png", alt: "카카오톡 후기 8" },
     { src: "images/카카오톡/KakaoTalk_20260712_194431767_08.png", alt: "카카오톡 후기 9" },
     { src: "images/카카오톡/KakaoTalk_20260712_194431767_09.png", alt: "카카오톡 후기 10" },
-    { src: "images/카카오톡/KakaoTalk_20260712_195704897.png", alt: "카카오톡 후기 11" }
-    { src: "images/카카오톡/KakaoTalk_20260712_195704897_01.png", alt: "카카오톡 후기 12" }
-    { src: "images/카카오톡/KakaoTalk_20260712_195704897_02.png", alt: "카카오톡 후기 13" }
-    { src: "images/카카오톡/KakaoTalk_20260712_195704897_03.png", alt: "카카오톡 후기 14" }
-    { src: "images/카카오톡/KakaoTalk_20260712_195704897_04.png", alt: "카카오톡 후기 15" }
-    { src: "images/카카오톡/KakaoTalk_20260712_195704897_05.png", alt: "카카오톡 후기 16" }
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897.png", alt: "카카오톡 후기 11" },
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_01.png", alt: "카카오톡 후기 12" },
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_02.png", alt: "카카오톡 후기 13" },
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_03.png", alt: "카카오톡 후기 14" },
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_04.png", alt: "카카오톡 후기 15" },
+    { src: "images/카카오톡/KakaoTalk_20260712_195704897_05.png", alt: "카카오톡 후기 16" },
     { src: "images/카카오톡/KakaoTalk_20260712_195704897_06.png", alt: "카카오톡 후기 17" }
   ];
   var TOTAL = REVIEWS_LEN + 1;
