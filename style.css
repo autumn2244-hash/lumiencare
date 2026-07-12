@@ -1390,7 +1390,7 @@ video {
   .mobile-nav-link{
     text-align:left;font-size:.875rem;font-weight:500;padding:.65rem 0;
     color:var(--brown);border-bottom:1px solid rgba(59,42,26,0.07);
-    background:none;border-left:none;border-right:none;border-top:none;width:100%;review
+    background:none;border-left:none;border-right:none;border-top:none;width:100%;
   }
 
   /* ── Hero trust strip ── */
@@ -1456,31 +1456,23 @@ video {
   .review-card p.quote{font-size:.875rem;line-height:1.7;color:#4a3828;margin:1rem 0;}
   .review-service-tag{font-size:.75rem;padding:4px 10px;font-weight:500;background:var(--cream-dark);color:var(--tan);border-radius:2px;}
 
-  .kakao-photo-track{
-    display:flex;
-    gap:1.25rem;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-    padding-bottom:.5rem;
-  }
-  .kakao-photo-track::-webkit-scrollbar{display:none;}
-  .kakao-photo-card{
-    flex:0 0 100%;
-    scroll-snap-align:start;
-    border-radius:8px;
-    overflow:hidden;
-    box-shadow:0 6px 24px rgba(59,42,26,0.12);
-    background:#fff;
-  }
-  .kakao-photo-card img{width:100%;height:auto;display:block;}
-
-  @media (min-width:1024px){
-    .kakao-photo-card{
-      flex:0 0 calc((100% - 2.5rem) / 3);
-    }
-  }
+  .kakao-window{width:100%;max-width:28rem;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(59,42,26,0.15);}
+  .kakao-header{display:flex;align-items:center;gap:.75rem;padding:.875rem 1rem;background:#3A1D00;}
+  .kakao-body{padding:1.25rem 1rem;display:flex;flex-direction:column;gap:.75rem;background:#B2C7D9;min-height:280px;}
+  .kakao-msg{display:flex;align-items:flex-end;gap:.5rem;flex-direction:row;}
+  .kakao-msg.biz{flex-direction:row-reverse;}
+  .kakao-avatar{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;color:#fff;background:var(--tan);border-radius:50%;}
+  .kakao-msg-col{max-width:72%;display:flex;flex-direction:column;gap:2px;}
+  .kakao-msg-name{font-size:12px;font-weight:600;margin:0 0 2px 4px;color:#1a1a1a;}
+  .kakao-msg-row{display:flex;align-items:flex-end;gap:6px;flex-direction:row;}
+  .kakao-msg.biz .kakao-msg-row{flex-direction:row-reverse;}
+  .kakao-bubble{padding:10px 14px;font-size:.875rem;line-height:1.6;box-shadow:0 1px 2px rgba(0,0,0,0.1);word-break:keep-all;}
+  .kakao-bubble.customer{background:#fff;color:#1a1a1a;border-radius:4px 18px 18px 18px;}
+  .kakao-bubble.biz{background:#FAE100;color:#3A1D00;border-radius:18px 4px 18px 18px;}
+  .kakao-time{font-size:10px;flex-shrink:0;padding-bottom:2px;color:rgba(0,0,0,0.45);}
+  .kakao-footer{display:flex;align-items:center;gap:.5rem;padding:.75rem 1rem;background:#fff;border-top:1px solid rgba(0,0,0,0.06);}
+  .kakao-input{flex:1;border-radius:9999px;padding:.5rem 1rem;font-size:.75rem;background:#f2f2f2;color:var(--muted-text);}
+  .kakao-send{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#FAE100;border-radius:50%;flex-shrink:0;}
 
   .review-dot{width:8px;height:8px;border-radius:4px;background:rgba(59,42,26,0.2);transition:all .2s ease;border:none;padding:0;}
   .review-dot.active{width:20px;background:var(--tan);}
@@ -1542,7 +1534,7 @@ video {
 .ur-preview-wrap button{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:var(--brown);color:#fff;border:none;font-size:.7rem;cursor:pointer;}
 .ur-honeypot{position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;}
 .ur-msg{font-size:.8rem;margin-top:.75rem;}
-
+.ur-card-photo{width:100%;height:160px;object-fit:cover;border-radius:3px;margin-top:.75rem;}
 .ur-empty{text-align:center;padding:3rem 0;color:var(--muted-text);font-size:.9rem;}
 .ur-submit-btn{
     display:inline-flex;
@@ -1561,27 +1553,3 @@ video {
 }
 .ur-submit-btn:hover{opacity:.85;}
 .ur-submit-btn:disabled{opacity:.5;cursor:not-allowed;}
-
-/* ── 직접 작성 후기 목록: 모바일은 가로 스와이프(1개씩), 데스크톱은 3열 그리드 ── */
-.ur-review-list{
-  display:flex;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  gap:1.25rem;
-  padding-bottom:.5rem;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-}
-.ur-review-list::-webkit-scrollbar{
-  display:none;
-}
-.ur-review-list > .review-card{
-  flex:0 0 100%;
-  scroll-snap-align:start;
-}
-
-@media (min-width:1024px){
-  .ur-review-list > .review-card{
-    flex:0 0 calc((100% - 2.5rem) / 3);
-  }
-}
