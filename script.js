@@ -261,39 +261,15 @@ function openCleanCaseGallery() {
 
   // ── 후기 캐러셀 ──
   var REVIEWS_LEN = 3;
-  var KAKAO = [
-    {
-      name: "최○○ 님", area: "경기 의정부시", date: "오후 2:14", service: "욕실 케어",
-      messages: [
-        { from: "customer", text: "안녕하세요! 저번에 욕실 청소 맡겼던 고객인데요~" },
-        { from: "customer", text: "진짜 너무 깨끗해져서 깜짝 놀랐어요 ㅠㅠ 남편도 엄청 좋아하고요!" },
-        { from: "biz", text: "감사합니다 고객님 😊 만족하셨다니 저희도 정말 기쁩니다!" },
-        { from: "customer", text: "다음 달에도 꼭 예약할게요~ 이번엔 거실도 부탁드려도 될까요?" },
-        { from: "biz", text: "물론이죠! 거실+방 패키지도 있으니 일정 맞춰 바로 안내드릴게요 📅" }
-      ]
-    },
-    {
-      name: "한○○ 님", area: "경기 양주시", date: "오전 10:52", service: "거실 + 방 케어",
-      messages: [
-        { from: "customer", text: "케어매니저님이 정말 꼼꼼하게 해주셨어요 👍" },
-        { from: "customer", text: "바닥이랑 소파 사이 먼지까지 다 없애주셨더라고요. 완전 감동이었어요!" },
-        { from: "biz", text: "세심하게 봐주셔서 감사해요 고객님 🙏 늘 최선을 다하겠습니다!" },
-        { from: "customer", text: "주변에도 많이 추천할게요 ㅎㅎ 진짜 최고예요" },
-        { from: "biz", text: "소중한 말씀 감사드립니다 😄 다음 방문도 기대해 주세요!" }
-      ]
-    },
-    {
-      name: "오○○ 님", area: "경기 남양주시", date: "오후 7:03", service: "화장실 + 거실 패키지",
-      messages: [
-        { from: "customer", text: "아이 있는 집인데 친환경 세제 쓴다고 하셔서 믿고 맡겼어요" },
-        { from: "biz", text: "네! 저희는 아이·반려동물 가정도 안심하실 수 있는 세제만 사용합니다 🌿" },
-        { from: "customer", text: "화장실이 이렇게 밝아질 수 있구나 싶었어요 ㅋㅋ 진짜 새집 같아요" },
-        { from: "customer", text: "정기 구독 신청하려고요! 어떻게 하면 되나요?" },
-        { from: "biz", text: "감사합니다! 카카오톡으로 날짜 알려주시면 바로 정기 일정 잡아드릴게요 😊" }
-      ]
-    }
+
+  // ★ 카카오톡 후기 사진 추가 방법: images/카카오톡 폴더에 파일을 넣고,
+  //    아래 배열에 실제 파일명으로 한 줄씩 추가/수정하면 됩니다.
+  var KAKAO_PHOTOS = [
+    { src: "images/카카오톡/review1.jpg", alt: "카카오톡 후기 1" },
+    { src: "images/카카오톡/review2.jpg", alt: "카카오톡 후기 2" },
+    { src: "images/카카오톡/review3.jpg", alt: "카카오톡 후기 3" }
   ];
-  var TOTAL = REVIEWS_LEN + KAKAO.length;
+  var TOTAL = REVIEWS_LEN + 1;
 
   var reviewIdx = 0;
   var isReviewPaused = false;
@@ -305,9 +281,7 @@ function openCleanCaseGallery() {
   var tabGeneral = document.getElementById('tabGeneral');
   var tabKakao = document.getElementById('tabKakao');
   var reviewDots = document.getElementById('reviewDots');
-  var kakaoMessagesEl = document.getElementById('kakaoMessages');
-  var kakaoNameArea = document.getElementById('kakaoNameArea');
-  var kakaoServiceTag = document.getElementById('kakaoServiceTag');
+  var kakaoPhotoTrack = document.getElementById('kakaoPhotoTrack');
   var generalCards = Array.prototype.slice.call(reviewsGeneral.querySelectorAll('.review-card'));
 
   // 점(dot) 생성
@@ -320,17 +294,30 @@ function openCleanCaseGallery() {
   }
   var dotEls = Array.prototype.slice.call(reviewDots.querySelectorAll('.review-dot'));
 
-  function renderKakaoMessage(msg, item, idx){
-    var isBiz = msg.from === 'biz';
-    var avatar = !isBiz ? '<div class="kakao-avatar">' + item.name.charAt(0) + '</div>' : '';
-    var nameLabel = (!isBiz && idx === 0) ? ('<p class="kakao-msg-name">' + item.name + '</p>') : '';
-    return '<div class="kakao-msg ' + (isBiz ? 'biz' : 'customer') + '">' +
-      avatar +
-      '<div class="kakao-msg-col">' + nameLabel +
-      '<div class="kakao-msg-row">' +
-      '<div class="kakao-bubble ' + (isBiz ? 'biz' : 'customer') + '">' + msg.text + '</div>' +
-      '<span class="kakao-time">' + item.date + '</span>' +
-      '</div></div></div>';
+  function renderKakaoPhotos(){
+    kakaoPhotoTrack.innerHTML = KAKAO_PHOTOS.map(function(p){
+      return '<div class="kakao-photo-card"><img src="' + p.src + '" alt="' + p.alt + '" /></div>';
+    }).join('');
+  }
+
+  var kakaoScrollTimer = null;
+  function startKakaoAutoScroll(){
+    stopKakaoAutoScroll();
+    kakaoScrollTimer = setInterval(function(){
+      if (!kakaoPhotoTrack) return;
+      var card = kakaoPhotoTrack.querySelector('.kakao-photo-card');
+      var step = card ? card.offsetWidth + 20 : 300;
+      var maxScroll = kakaoPhotoTrack.scrollWidth - kakaoPhotoTrack.clientWidth;
+      if (kakaoPhotoTrack.scrollLeft >= maxScroll - 5) {
+        kakaoPhotoTrack.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        kakaoPhotoTrack.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    }, 3000);
+  }
+  function stopKakaoAutoScroll(){
+    if (kakaoScrollTimer) clearInterval(kakaoScrollTimer);
+    kakaoScrollTimer = null;
   }
 
   function renderReviewState(){
@@ -347,11 +334,10 @@ function openCleanCaseGallery() {
         var idx = parseInt(card.getAttribute('data-idx'), 10);
         card.classList.toggle('current', idx === reviewIdx);
       });
+      stopKakaoAutoScroll();
     } else {
-      var item = KAKAO[reviewIdx - REVIEWS_LEN];
-      kakaoNameArea.textContent = item.name + ' · ' + item.area;
-      kakaoServiceTag.textContent = item.service;
-      kakaoMessagesEl.innerHTML = item.messages.map(function(m, mi){ return renderKakaoMessage(m, item, mi); }).join('');
+      if (!kakaoPhotoTrack.hasChildNodes()) renderKakaoPhotos();
+      startKakaoAutoScroll();
     }
 
     dotEls.forEach(function(d, i){
@@ -386,8 +372,8 @@ function openCleanCaseGallery() {
   document.getElementById('reviewNext').addEventListener('click', function(){ setReviewIdx(reviewIdx + 1); });
 
   var reviewsSection = document.getElementById('reviews');
-  reviewsSection.addEventListener('mouseenter', function(){ isReviewPaused = true; if (reviewTimer) clearInterval(reviewTimer); });
-  reviewsSection.addEventListener('mouseleave', function(){ isReviewPaused = false; restartTimer(); });
+  reviewsSection.addEventListener('mouseenter', function(){ isReviewPaused = true; if (reviewTimer) clearInterval(reviewTimer); stopKakaoAutoScroll(); });
+  reviewsSection.addEventListener('mouseleave', function(){ isReviewPaused = false; restartTimer(); if (reviewIdx >= REVIEWS_LEN) startKakaoAutoScroll(); });
 
   renderReviewState();
   restartTimer();
