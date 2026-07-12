@@ -1465,6 +1465,7 @@ video {
 
   .review-viewport{
     display:flex;
+    align-items:flex-start;
     gap:1.25rem;
     overflow-x:auto;
     scroll-snap-type:x mandatory;
