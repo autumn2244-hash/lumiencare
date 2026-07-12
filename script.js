@@ -259,7 +259,7 @@ function openCleanCaseGallery() {
   var cleanCaseMoreBtn = document.getElementById('cleanCaseMoreBtn');
   if (cleanCaseMoreBtn) cleanCaseMoreBtn.addEventListener('click', openCleanCaseGallery);
 
-  // ── 후기 캐러셀 ──
+  // ── 후기 캐러셀 (일반 후기 + 카카오톡 후기를 하나의 트랙으로 연결) ──
   // ★ 카카오톡 후기 사진 추가 방법: images/카카오톡 폴더에 파일을 넣고,
   //    아래 배열에 실제 파일명으로 한 줄씩 추가/수정하면 됩니다.
   var KAKAO_PHOTOS = [
@@ -282,29 +282,35 @@ function openCleanCaseGallery() {
     { src: "images/카카오톡/KakaoTalk_20260712_195704897_06.png", alt: "카카오톡 후기 17" }
   ];
 
-  var reviewsGeneral = document.getElementById('reviewsGeneral');
-  var reviewsKakao = document.getElementById('reviewsKakao');
+  var reviewTrack = document.getElementById('reviewTrack');
   var tabGeneral = document.getElementById('tabGeneral');
   var tabKakao = document.getElementById('tabKakao');
   var reviewDots = document.getElementById('reviewDots');
   var reviewsSection = document.getElementById('reviews');
 
-  // 카카오톡 사진 렌더링 (최초 1회)
-  reviewsKakao.innerHTML = KAKAO_PHOTOS.map(function(p){
-    return '<div class="kakao-photo-card"><img src="' + p.src + '" alt="' + p.alt + '" loading="lazy" /></div>';
-  }).join('');
+  var GENERAL_COUNT = reviewTrack.querySelectorAll('.review-card').length; // 3
 
-  var activeTab = 'general';
-  var pageState = { general: 0, kakao: 0 };
+  // 카카오톡 사진 카드를 트랙 맨 뒤에 이어붙임 (최초 1회, 일반 후기 뒤로 자연스럽게 연결)
+  KAKAO_PHOTOS.forEach(function(p){
+    var card = document.createElement('div');
+    card.className = 'kakao-photo-card';
+    card.innerHTML = '<img src="' + p.src + '" alt="' + p.alt + '" loading="lazy" />';
+    reviewTrack.appendChild(card);
+  });
+
+  var KAKAO_COUNT = KAKAO_PHOTOS.length;
+  var TOTAL_COUNT = GENERAL_COUNT + KAKAO_COUNT;
+
+  var currentPage = 0;
   var autoTimer = null;
   var resumeTimer = null;
   var isInteracting = false;
 
   function isMobile(){ return window.innerWidth < 1024; }
   function itemsPerPage(){ return isMobile() ? 1 : 3; }
-  function viewportEl(){ return activeTab === 'general' ? reviewsGeneral : reviewsKakao; }
-  function itemCount(){ return activeTab === 'general' ? 3 : KAKAO_PHOTOS.length; }
-  function pageCount(){ return Math.max(1, Math.ceil(itemCount() / itemsPerPage())); }
+  function pageCount(){ return Math.max(1, Math.ceil(TOTAL_COUNT / itemsPerPage())); }
+  function generalPageCount(){ return Math.max(1, Math.ceil(GENERAL_COUNT / itemsPerPage())); }
+  function kakaoStartPage(){ return generalPageCount(); }
 
   function buildDots(){
     reviewDots.innerHTML = '';
@@ -318,66 +324,52 @@ function openCleanCaseGallery() {
       })(i));
       reviewDots.appendChild(dot);
     }
-    updateDots();
+    updateUI();
   }
 
-  function updateDots(){
+  function updateUI(){
     var dots = reviewDots.querySelectorAll('.review-dot');
-    var cur = pageState[activeTab];
+    var isKakao = currentPage >= kakaoStartPage();
     dots.forEach(function(d, i){
-      d.classList.toggle('active', i === cur);
-      d.classList.toggle('kakao-active', activeTab === 'kakao' && i === cur);
+      d.classList.toggle('active', i === currentPage);
+      d.classList.toggle('kakao-active', isKakao && i === currentPage);
     });
+    tabGeneral.classList.toggle('active', !isKakao);
+    tabKakao.classList.toggle('active', isKakao);
   }
 
   function goToPage(pageIdx, userInitiated){
-    var vp = viewportEl();
     var count = pageCount();
-    pageIdx = ((pageIdx % count) + count) % count;
-    pageState[activeTab] = pageIdx;
-    vp.scrollTo({ left: pageIdx * vp.clientWidth, behavior: 'smooth' });
-    updateDots();
+    currentPage = ((pageIdx % count) + count) % count;
+    reviewTrack.scrollTo({ left: currentPage * reviewTrack.clientWidth, behavior: 'smooth' });
+    updateUI();
     if (userInitiated) restartTimer();
   }
 
   function syncPageFromScroll(){
-    var vp = viewportEl();
-    if (!vp.clientWidth) return;
-    var idx = Math.round(vp.scrollLeft / vp.clientWidth);
-    pageState[activeTab] = Math.max(0, Math.min(idx, pageCount() - 1));
-    updateDots();
+    if (!reviewTrack.clientWidth) return;
+    var idx = Math.round(reviewTrack.scrollLeft / reviewTrack.clientWidth);
+    currentPage = Math.max(0, Math.min(idx, pageCount() - 1));
+    updateUI();
   }
 
-  function setActiveTab(tab){
-    activeTab = tab;
-    reviewsGeneral.style.display = tab === 'general' ? 'flex' : 'none';
-    reviewsKakao.style.display = tab === 'kakao' ? 'flex' : 'none';
-    tabGeneral.classList.toggle('active', tab === 'general');
-    tabKakao.classList.toggle('active', tab === 'kakao');
-    buildDots();
-    goToPage(pageState[tab] || 0, false);
-    restartTimer();
-  }
+  tabGeneral.addEventListener('click', function(){ goToPage(0, true); });
+  tabKakao.addEventListener('click', function(){ goToPage(kakaoStartPage(), true); });
+  document.getElementById('reviewPrev').addEventListener('click', function(){ goToPage(currentPage - 1, true); });
+  document.getElementById('reviewNext').addEventListener('click', function(){ goToPage(currentPage + 1, true); });
 
-  tabGeneral.addEventListener('click', function(){ setActiveTab('general'); });
-  tabKakao.addEventListener('click', function(){ setActiveTab('kakao'); });
-  document.getElementById('reviewPrev').addEventListener('click', function(){ goToPage(pageState[activeTab] - 1, true); });
-  document.getElementById('reviewNext').addEventListener('click', function(){ goToPage(pageState[activeTab] + 1, true); });
-
-  // 스크롤(터치 스와이프 포함) 위치에 맞춰 점(dot) 동기화
+  // 스크롤(터치 스와이프 포함) 위치에 맞춰 점(dot)·탭 상태 동기화
   var scrollSyncTimer = null;
-  [reviewsGeneral, reviewsKakao].forEach(function(vp){
-    vp.addEventListener('scroll', function(){
-      if (scrollSyncTimer) clearTimeout(scrollSyncTimer);
-      scrollSyncTimer = setTimeout(syncPageFromScroll, 120);
-    });
+  reviewTrack.addEventListener('scroll', function(){
+    if (scrollSyncTimer) clearTimeout(scrollSyncTimer);
+    scrollSyncTimer = setTimeout(syncPageFromScroll, 120);
   });
 
-  // 자동 재생 (일정 시간마다 다음 페이지로)
+  // 자동 재생 (일정 시간마다 다음 페이지로 — 일반 후기 → 카카오톡 후기 순서로 자연스럽게 이어짐)
   function startTimer(){
     stopTimer();
     autoTimer = setInterval(function(){
-      goToPage(pageState[activeTab] + 1, false);
+      goToPage(currentPage + 1, false);
     }, 4500);
   }
   function stopTimer(){
@@ -388,7 +380,7 @@ function openCleanCaseGallery() {
     if (!isInteracting) startTimer();
   }
 
-  // 사용자가 손으로 넘기는 중(터치/드래그)에는 자동재생 정지, 손을 떼면 잠시 후 재개
+  // 손으로 넘기는 중(터치/드래그)에는 자동재생 정지, 손을 떼면 잠시 후 재개
   function pauseForInteraction(){
     isInteracting = true;
     stopTimer();
@@ -401,12 +393,10 @@ function openCleanCaseGallery() {
       startTimer();
     }, 2500);
   }
-  [reviewsGeneral, reviewsKakao].forEach(function(vp){
-    vp.addEventListener('touchstart', pauseForInteraction, { passive: true });
-    vp.addEventListener('touchend', resumeAfterInteraction, { passive: true });
-    vp.addEventListener('mousedown', pauseForInteraction);
-    vp.addEventListener('mouseup', resumeAfterInteraction);
-  });
+  reviewTrack.addEventListener('touchstart', pauseForInteraction, { passive: true });
+  reviewTrack.addEventListener('touchend', resumeAfterInteraction, { passive: true });
+  reviewTrack.addEventListener('mousedown', pauseForInteraction);
+  reviewTrack.addEventListener('mouseup', resumeAfterInteraction);
 
   // PC에서는 리뷰 영역에 마우스를 올리면 자동재생 정지
   reviewsSection.addEventListener('mouseenter', function(){ isInteracting = true; stopTimer(); });
@@ -417,13 +407,13 @@ function openCleanCaseGallery() {
   window.addEventListener('resize', function(){
     if (isMobile() !== wasMobile){
       wasMobile = isMobile();
-      pageState.general = 0;
-      pageState.kakao = 0;
       buildDots();
       goToPage(0, false);
     }
   });
 
-  setActiveTab('general');
+  buildDots();
+  goToPage(0, false);
+  startTimer();
 
 })();
