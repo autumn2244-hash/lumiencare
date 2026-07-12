@@ -313,7 +313,7 @@
 
       <div id="reviewInner">
         <!-- General reviews -->
-        <div id="reviewsGeneral" class="grid lg:grid-cols-3 gap-5">
+         <div id="reviewsGeneral" class="review-viewport"></div>
           <div class="review-card" data-idx="0">
             <div class="flex gap-0.5">
               <i data-lucide="star" width="13" height="13" style="fill:var(--tan); color:var(--tan)"></i>
@@ -359,9 +359,7 @@
         </div>
 
         <!-- Kakao review photos -->
-        <div id="reviewsKakao" style="display:none">
-          <div id="kakaoPhotoTrack" class="kakao-photo-track"></div>
-        </div>
+        <div id="reviewsKakao" class="review-viewport" style="display:none"></div>
       </div>
 
       <div class="flex justify-center mt-8 gap-2" id="reviewDots"></div>
