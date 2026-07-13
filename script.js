@@ -279,20 +279,20 @@ function openCleanCaseGallery() {
     { src: "images/카카오톡/kakao14.png", alt: "카카오톡 후기 14" },
     { src: "images/카카오톡/kakao15.png", alt: "카카오톡 후기 15" },
     { src: "images/카카오톡/kakao16.png", alt: "카카오톡 후기 16" },
-    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 17" }
-    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 18" }
-    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 19" }
-    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 20" }
-    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 21" }
-    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 22" }
-    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 23" }
+    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 17" },
+    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 18" },
+    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 19" },
+    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 20" },
+    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 21" },
+    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 22" },
+    { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 23" },
     { src: "images/카카오톡/kakao17.png", alt: "카카오톡 후기 24" }
   ];
 
   // ★ 문자 후기 사진 추가 방법: images/문자후기 폴더에 파일을 넣고,
   //    아래 배열에 실제 파일명으로 한 줄씩 추가/수정하면 됩니다.
   var TEXT_REVIEW_PHOTOS = [
-    { src: "images/문자후기/KakaoTalk_20260712_234310020.png", alt: "문자 후기 1" }
+    { src: "images/문자후기/KakaoTalk_20260712_234310020.png", alt: "문자 후기 1" },
     { src: "images/문자후기/message1.jpg", alt: "문자 후기 1" }
   ];
 
