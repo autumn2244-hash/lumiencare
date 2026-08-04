@@ -123,7 +123,6 @@
     { src: "images/현장/office12.jpg", label: "사무실청소" },
     { src: "images/현장/health1.jpg", label: "헬스장청소" },
     { src: "images/현장/health2.jpg", label: "헬스장청소" },
-    { src: "images/현장/health3.jpg", label: "헬스장청소" },
     { src: "images/현장/health4.jpg", label: "헬스장청소" },
     { src: "images/현장/health5.jpg", label: "헬스장청소" },
     { src: "images/현장/health6.jpg", label: "헬스장청소" },
