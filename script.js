@@ -150,6 +150,15 @@
     { src: "images/현장/cloth6.jpg", label: "옷가게청소" },
     { src: "images/현장/cloth7.jpg", label: "옷가게청소" },
     { src: "images/현장/cloth8.jpg", label: "옷가게청소" },
+    { src: "images/현장/institute1.jpg", label: "학원청소" },
+    { src: "images/현장/institute2.jpg", label: "학원청소" },
+    { src: "images/현장/institute3.jpg", label: "학원청소" },
+    { src: "images/현장/institute4.jpg", label: "학원청소" },
+    { src: "images/현장/institute5.jpg", label: "학원청소" },
+    { src: "images/현장/institute6.jpg", label: "학원청소" },
+    { src: "images/현장/institute7.jpg", label: "학원청소" },
+    { src: "images/현장/institute8.jpg", label: "학원청소" },
+    { src: "images/현장/institute9.jpg", label: "학원청소" },
   ];
 
  // ── CLEAN CASE 갤러리 (세로 스크롤 버전 - 안정화) ──
