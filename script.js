@@ -309,7 +309,7 @@ function openCleanCaseGallery() {
   if (cleanCaseMoreBtn) cleanCaseMoreBtn.addEventListener('click', openCleanCaseGallery);
 
   // ── 후기 캐러셀 (일반 후기 + 카카오톡 후기를 하나의 트랙으로 연결) ──
-  // ★ 카카오톡 후기 사진 추가 방법: images/카카오톡 폴더에 파일을 넣고,
+  // ★ 카카오톡 후기 사진 추가 방법: images/카카오톡후기 폴더에 파일을 넣고,
   //    아래 배열에 실제 파일명으로 한 줄씩 추가/수정하면 됩니다.
   var KAKAO_PHOTOS = [
     { src: "images/카카오톡후기/kakao1.png", alt: "카카오톡 후기 1" },
