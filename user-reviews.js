@@ -226,7 +226,7 @@
       photoHtml +
       '<p class="quote">' + escapeHtml(r.content) + '</p>' +
       '<div class="flex items-center justify-between pt-4 border-t" style="border-color:rgba(59,42,26,0.08)">' +
-        '<div><p class="text-sm font-semibold">' + escapeHtml(r.name) + ' 님</p>' +
+        '<div><p class="text-sm font-semibold">'</p>' +
         '<p class="text-xs" style="color:var(--muted-text)">' + escapeHtml(r.area || '') + '</p></div>' +
         '<span class="review-service-tag">' + escapeHtml(r.service) + '</span>' +
       '</div>';
