@@ -173,8 +173,8 @@ if(window.wcs) {
   <!-- ─────────── MOBILE FEATURE BAR ─────────── -->
   <section class="lg:hidden py-6" style="background:var(--brown)">
     <div class="max-w-7xl mx-auto px-5 grid grid-cols-2 gap-4">
-      <div class="flex items-center gap-2.5"><i data-lucide="sparkles" width="18" height="18" style="color:var(--tan)"></i><span class="text-sm font-medium text-white">친환경 세제</span></div>
-      <div class="flex items-center gap-2.5"><i data-lucide="shield" width="18" height="18" style="color:var(--tan)"></i><span class="text-sm font-medium text-white">전문 케어매니저</span></div>
+      <div class="flex items-center gap-2.5"><i data-lucide="sparkles" width="18" height="18" style="color:var(--tan)"></i><span class="text-sm font-medium text-white">하청없이 대표 직접청소</span></div>
+      <div class="flex items-center gap-2.5"><i data-lucide="shield" width="18" height="18" style="color:var(--tan)"></i><span class="text-sm font-medium text-white">프리미엄 친환경 세제 사용</span></div>
       <div class="flex items-center gap-2.5"><i data-lucide="clock" width="18" height="18" style="color:var(--tan)"></i><span class="text-sm font-medium text-white">정기 방문 관리</span></div>
       <div class="flex items-center gap-2.5"><i data-lucide="heart" width="18" height="18" style="color:var(--tan)"></i><span class="text-sm font-medium text-white">100% 만족 보장</span></div>
     </div>
@@ -349,7 +349,13 @@ if(window.wcs) {
           <h2 class="text-3xl lg:text-4xl font-bold font-serif">루미엔케어 포트폴리오</h2>
           <p class="text-base mt-2" style="color:var(--muted-text)">청소 후 사진</p>
         </div>
-        <button id="toggleReviewFormBtn" class="outline-btn">작성하기</button>
+        <div class="flex items-center gap-3">
+          <div class="hidden lg:flex items-center gap-2">
+            <button id="urPrev" class="nav-arrow" aria-label="이전 사진"><i data-lucide="chevron-left" width="16" height="16"></i></button>
+            <button id="urNext" class="nav-arrow" aria-label="다음 사진"><i data-lucide="chevron-right" width="16" height="16"></i></button>
+          </div>
+          <button id="toggleReviewFormBtn" class="outline-btn">작성하기</button>
+        </div>
       </div>
 
       <div id="reviewFormWrap" class="user-review-form" style="display:none">

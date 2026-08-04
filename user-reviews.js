@@ -16,6 +16,8 @@
   const form = document.getElementById('userReviewForm');
   const listEl = document.getElementById('userReviewList');
   const emptyEl = document.getElementById('urEmpty');
+  const urPrevBtn = document.getElementById('urPrev');
+  const urNextBtn = document.getElementById('urNext');
   const contentEl = document.getElementById('urContent');
   const countEl = document.getElementById('urCount');
   const starsWrap = document.getElementById('urStars');
@@ -237,6 +239,29 @@
     var div = document.createElement('div');
     div.textContent = str || '';
     return div.innerHTML;
+  }
+ 
+  // ── PC 버전: 화살표 클릭으로 포트폴리오 넘기기 ──
+  function urScrollByPage(direction){
+    if (!listEl) return;
+    listEl.scrollBy({ left: direction * listEl.clientWidth, behavior: 'smooth' });
+  }
+  function urUpdateArrowState(){
+    if (!urPrevBtn || !urNextBtn) return;
+    var maxScroll = listEl.scrollWidth - listEl.clientWidth - 4;
+    urPrevBtn.disabled = listEl.scrollLeft <= 4;
+    urNextBtn.disabled = listEl.scrollLeft >= maxScroll;
+    urPrevBtn.style.opacity = urPrevBtn.disabled ? '.4' : '1';
+    urNextBtn.style.opacity = urNextBtn.disabled ? '.4' : '1';
+  }
+  if (urPrevBtn) urPrevBtn.addEventListener('click', function(){ urScrollByPage(-1); });
+  if (urNextBtn) urNextBtn.addEventListener('click', function(){ urScrollByPage(1); });
+  if (listEl){
+    var urScrollTimer = null;
+    listEl.addEventListener('scroll', function(){
+      if (urScrollTimer) clearTimeout(urScrollTimer);
+      urScrollTimer = setTimeout(urUpdateArrowState, 100);
+    });
   }
  
   loadReviews();
