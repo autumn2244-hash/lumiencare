@@ -312,12 +312,12 @@ function openCleanCaseGallery() {
   // ★ 카카오톡 후기 사진 추가 방법: images/카카오톡후기 폴더에 파일을 넣고,
   //    아래 배열에 실제 파일명으로 한 줄씩 추가/수정하면 됩니다.
   var KAKAO_PHOTOS = [
-    { src: "images/카카오톡후기/kakao1.png", alt: "카카오톡 후기 1" },
-    { src: "images/카카오톡후기/kakao2.png", alt: "카카오톡 후기 2" },
-    { src: "images/카카오톡후기/kakao3.png", alt: "카카오톡 후기 3" },
-    { src: "images/카카오톡후기/kakao4.png", alt: "카카오톡 후기 4" },
-    { src: "images/카카오톡후기/kakao5.png", alt: "카카오톡 후기 5" },
-    { src: "images/카카오톡후기/kakao6.png", alt: "카카오톡 후기 6" }
+    { src: "images/kakao-reviews/kakao1.png", alt: "카카오톡 후기 1" },
+    { src: "images/kakao-reviews/kakao2.png", alt: "카카오톡 후기 2" },
+    { src: "images/kakao-reviews/kakao3.png", alt: "카카오톡 후기 3" },
+    { src: "images/kakao-reviews/kakao4.png", alt: "카카오톡 후기 4" },
+    { src: "images/kakao-reviews/kakao5.png", alt: "카카오톡 후기 5" },
+    { src: "images/kakao-reviews/kakao6.png", alt: "카카오톡 후기 6" }
   ];
 
   // ★ 문자 후기 사진 추가 방법: images/문자후기 폴더에 파일을 넣고,
