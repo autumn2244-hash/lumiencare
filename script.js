@@ -174,9 +174,13 @@
     { src: "images/현장/institute9.jpg", label: "학원청소" },
   ];
 
- // ── CLEAN CASE 갤러리 (세로 스크롤 버전 - 안정화) ──
-function openCleanCaseGallery() {
-  var cards = CASE_GALLERY.map(function(item) {
+ // ── CLEAN CASE 갤러리 (세로 스크롤 버전 - 안정화, 카테고리 필터 지원) ──
+function openCleanCaseGallery(filterCategory) {
+  var galleryData = filterCategory
+    ? CASE_GALLERY.filter(function(item){ return item.label === filterCategory; })
+    : CASE_GALLERY;
+
+  var cards = galleryData.map(function(item) {
     return `
       <div class="gal-card">
         <div class="gal-img-wrapper">
@@ -187,12 +191,14 @@ function openCleanCaseGallery() {
     `;
   }).join('');
 
+  var pageTitle = filterCategory ? (filterCategory + ' 사례') : '클린 케이스 갤러리';
+
   var html = `
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>클린 케이스 갤러리 | 루미엔케어</title>
+  <title>${pageTitle} | 루미엔케어</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -269,7 +275,7 @@ function openCleanCaseGallery() {
 <body>
   <div class="wrap">
     <span class="top-label">CLEAN CASE</span>
-    <h1>클린 케이스 갤러리</h1>
+    <h1>${pageTitle}</h1>
     <p class="sub">전문가의 손길로 달라진 케어 사례들을 확인해 보세요.</p>
     
     <div class="gal-grid">
@@ -326,9 +332,16 @@ function openCleanCaseGallery() {
   // ── FAQ 버튼 ──
   document.getElementById('footerFaqBtn').addEventListener('click', openFaqWindow);
 
-  // ── CLEAN CASE 더보기 버튼 ──
+  // ── CLEAN CASE 더보기 버튼 (전체 보기) ──
   var cleanCaseMoreBtn = document.getElementById('cleanCaseMoreBtn');
-  if (cleanCaseMoreBtn) cleanCaseMoreBtn.addEventListener('click', openCleanCaseGallery);
+  if (cleanCaseMoreBtn) cleanCaseMoreBtn.addEventListener('click', function(){ openCleanCaseGallery(); });
+
+  // ── CLEAN CASE 개별 카드 클릭 (해당 카테고리만 필터링해서 팝업) ──
+  document.querySelectorAll('.case-card[data-category]').forEach(function(card){
+    card.addEventListener('click', function(){
+      openCleanCaseGallery(card.getAttribute('data-category'));
+    });
+  });
 
   // ── 후기 캐러셀 (일반 후기 + 카카오톡 후기를 하나의 트랙으로 연결) ──
   // ★ 카카오톡 후기 사진 추가 방법: images/카카오톡후기 폴더에 파일을 넣고,

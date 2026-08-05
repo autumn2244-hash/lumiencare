@@ -1398,7 +1398,7 @@ video {
   .trust-item + .trust-item{border-left:1px solid rgba(255,255,255,0.12);}
 
   /* ── Clean case cards ── */
-  .case-card{position:relative;overflow:hidden;border-radius:4px;}
+  .case-card{position:relative;overflow:hidden;border-radius:4px;cursor:pointer;}
   .case-card img{width:100%;height:240px;object-fit:cover;transition:transform .5s ease;}
   .case-card:hover img{transform:scale(1.05);}
   .case-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(59,42,26,0.75) 0%, transparent 55%);}
