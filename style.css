@@ -1593,3 +1593,70 @@ video {
     flex:0 0 calc((100% - 2.5rem) / 3);
   }
 }
+
+/* ── Clean Case 모달 (팝업창 대신 페이지 내 모달 - 모바일 호환) ── */
+.lc-modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(20,14,8,0.72);
+  z-index:200;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:40px 16px;
+  overflow-y:auto;
+  opacity:0;
+  animation:lcFadeIn .25s ease forwards;
+  -webkit-overflow-scrolling:touch;
+}
+@keyframes lcFadeIn{ to{ opacity:1; } }
+
+.lc-modal-box{
+  background:var(--cream);
+  width:100%;
+  max-width:1100px;
+  border-radius:10px;
+  padding:32px 24px 60px;
+  position:relative;
+  transform:translateY(16px);
+  animation:lcSlideUp .3s ease forwards;
+}
+@keyframes lcSlideUp{ to{ transform:translateY(0); } }
+
+.lc-modal-close{
+  position:absolute;
+  top:16px; right:16px;
+  width:36px; height:36px;
+  border-radius:50%;
+  border:none;
+  background:rgba(59,42,26,0.08);
+  color:var(--brown);
+  font-size:20px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+}
+.lc-modal-close:hover{ background:rgba(59,42,26,0.16); }
+
+.lc-modal-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+  margin-top:24px;
+}
+@media (max-width:900px){ .lc-modal-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .lc-modal-grid{ grid-template-columns:1fr; } }
+
+.lc-modal-card{
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(59,42,26,0.08);
+}
+.lc-modal-card img{ width:100%; height:auto; display:block; }
+.lc-modal-card .lc-modal-label{
+  padding:14px 18px;
+  font-size:14px;
+  font-weight:600;
+  border-top:1px solid rgba(59,42,26,0.06);
+}
+body.lc-modal-open{ overflow:hidden; }

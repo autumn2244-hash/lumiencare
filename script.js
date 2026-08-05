@@ -174,125 +174,56 @@
     { src: "images/현장/institute9.jpg", label: "학원청소" },
   ];
 
- // ── CLEAN CASE 갤러리 (세로 스크롤 버전 - 안정화, 카테고리 필터 지원) ──
+ // ── CLEAN CASE 갤러리 (페이지 내 모달 방식 - 모바일/인앱브라우저 호환) ──
+function lcEscHandler(e){
+  if (e.key === 'Escape') closeCleanCaseGallery();
+}
+
+function closeCleanCaseGallery(){
+  var overlay = document.getElementById('lcModalOverlay');
+  if (overlay) overlay.remove();
+  document.body.classList.remove('lc-modal-open');
+  document.removeEventListener('keydown', lcEscHandler);
+}
+
 function openCleanCaseGallery(filterCategory) {
   var galleryData = filterCategory
     ? CASE_GALLERY.filter(function(item){ return item.label === filterCategory; })
     : CASE_GALLERY;
 
   var cards = galleryData.map(function(item) {
-    return `
-      <div class="gal-card">
-        <div class="gal-img-wrapper">
-          <img src="${item.src}" alt="${item.label}" />
-        </div>
-        <div class="gal-label">${item.label}</div>
-      </div>
-    `;
+    return '<div class="lc-modal-card"><img src="' + item.src + '" alt="' + item.label + '" loading="lazy" />' +
+           '<div class="lc-modal-label">' + item.label + '</div></div>';
   }).join('');
 
   var pageTitle = filterCategory ? (filterCategory + ' 사례') : '클린 케이스 갤러리';
 
-  var html = `
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <title>${pageTitle} | 루미엔케어</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: ${C.cream};
-      font-family: 'Noto Sans KR', sans-serif;
-      color: ${C.brown};
-    }
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
-    }
-    .top-label {
-      font-size: 12px;
-      letter-spacing: .3em;
-      color: ${C.tan};
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    h1 { font-size: 26px; margin: 10px 0 8px; }
-    p.sub { 
-      font-size: 14px; 
-      color: ${C.mutedText}; 
-      margin-bottom: 32px; 
-    }
-    
-    /* 세로 스크롤 영역 */
- .gal-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    @media (max-width: 900px) {
-      .gal-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 640px) {
-      .gal-grid { grid-template-columns: 1fr; }
-      .wrap { padding: 32px 20px 80px; }
-    }
+  // 이미 열려있는 모달이 있으면 먼저 닫기
+  closeCleanCaseGallery();
 
-    .gal-card {
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(59,42,26,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .gal-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 14px 34px rgba(59,42,26,0.16);
-    }
-    .gal-img-wrapper {
-      overflow: hidden;
-      background: ${C.creamDark};
-    }
-    .gal-img-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .gal-card:hover .gal-img-wrapper img {
-      transform: scale(1.04);
-    }
-    .gal-label {
-      padding: 16px 20px;
-      font-size: 15px;
-      font-weight: 600;
-      border-top: 1px solid rgba(59,42,26,0.06);
-    }
+  var overlay = document.createElement('div');
+  overlay.id = 'lcModalOverlay';
+  overlay.className = 'lc-modal-overlay';
+  overlay.innerHTML =
+    '<div class="lc-modal-box">' +
+      '<button type="button" class="lc-modal-close" aria-label="닫기">&times;</button>' +
+      '<span class="eyebrow">CLEAN CASE</span>' +
+      '<h2 class="text-2xl lg:text-3xl font-bold font-serif" style="color:var(--brown)">' + pageTitle + '</h2>' +
+      '<div class="lc-modal-grid">' + cards + '</div>' +
+    '</div>';
 
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <span class="top-label">CLEAN CASE</span>
-    <h1>${pageTitle}</h1>
-    <p class="sub">전문가의 손길로 달라진 케어 사례들을 확인해 보세요.</p>
-    
-    <div class="gal-grid">
-  ${cards}
-</div>
+  document.body.appendChild(overlay);
+  document.body.classList.add('lc-modal-open');
 
-</body>
-</html>`;
+  // 배경(어두운 부분) 클릭 시 닫기
+  overlay.addEventListener('click', function(e){
+    if (e.target === overlay) closeCleanCaseGallery();
+  });
+  // X 버튼 클릭 시 닫기
+  overlay.querySelector('.lc-modal-close').addEventListener('click', closeCleanCaseGallery);
 
-  var win = window.open("", "_blank", "width=1080,height=820");
-  if (win) {
-    win.document.open();
-    win.document.write(html);
-    win.document.close();
-  } else {
-    alert("팝업이 차단되었습니다. 팝업 차단을 해제해 주세요.");
-  }
+  // ESC 키로 닫기 (PC)
+  document.addEventListener('keydown', lcEscHandler);
 }
 
   // ── 헤더 스크롤 상태 ──
