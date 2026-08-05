@@ -195,6 +195,7 @@
           emptyEl.textContent = '아직 등록된 후기가 없습니다. 첫 번째 후기를 남겨보세요!';
           emptyEl.style.color = '';
           emptyEl.style.display = 'block';
+          urStopAutoSlide();
           return;
         }
  
@@ -202,6 +203,8 @@
         approved.slice(0, 30).forEach(function(data){
           listEl.appendChild(renderCard(data));
         });
+
+        urInitAutoSlide();
       })
       .catch(function(err){
         console.error('리뷰 로드 오류:', err);
@@ -212,6 +215,7 @@
           '후기를 불러오는 중 문제가 발생했습니다. (오류: ' +
           (err && err.code ? err.code : err) +
           ') — F12 콘솔을 확인해 주세요.';
+          urStopAutoSlide();
       });
   }
  
@@ -265,5 +269,95 @@
   }
  
   loadReviews();
+
+   // ✅ 🆕 포트폴리오 슬라이드 자동 이동 기능
+  var urAutoTimer = null;
+  var urResumeTimer = null;
+  var urIsInteracting = false;
+  var urCurrentPage = 0;
+
+  function urItemsPerPage(){
+    return window.innerWidth < 1024 ? 1 : 3;
+  }
+  function urPageCount(){
+    if (!listEl.children.length) return 1;
+    return Math.max(1, Math.ceil(listEl.children.length / urItemsPerPage()));
+  }
+
+  function urGoToPageAuto(pageIdx){
+    var count = urPageCount();
+    urCurrentPage = ((pageIdx % count) + count) % count;
+    listEl.scrollTo({ left: urCurrentPage * listEl.clientWidth, behavior: 'smooth' });
+  }
+
+  function urSyncPageFromScroll(){
+    if (!listEl.clientWidth) return;
+    var idx = Math.round(listEl.scrollLeft / listEl.clientWidth);
+    urCurrentPage = Math.max(0, Math.min(idx, urPageCount() - 1));
+  }
+
+  var urScrollSyncTimer = null;
+  listEl.addEventListener('scroll', function(){
+    if (urScrollSyncTimer) clearTimeout(urScrollSyncTimer);
+    urScrollSyncTimer = setTimeout(urSyncPageFromScroll, 120);
+  });
+
+  function urStartAutoSlide(){
+    urStopAutoSlide();
+    urAutoTimer = setInterval(function(){
+      urGoToPageAuto(urCurrentPage + 1);
+    }, 5000);
+  }
+  function urStopAutoSlide(){
+    if (urAutoTimer) clearInterval(urAutoTimer);
+    urAutoTimer = null;
+  }
+  function urRestartAutoSlide(){
+    if (!urIsInteracting) urStartAutoSlide();
+  }
+
+  function urPauseAuto(){
+    urIsInteracting = true;
+    urStopAutoSlide();
+    if (urResumeTimer) clearTimeout(urResumeTimer);
+  }
+  function urResumeAuto(){
+    if (urResumeTimer) clearTimeout(urResumeTimer);
+    urResumeTimer = setTimeout(function(){
+      urIsInteracting = false;
+      urStartAutoSlide();
+    }, 2500);
+  }
+  listEl.addEventListener('touchstart', urPauseAuto, { passive: true });
+  listEl.addEventListener('touchend', urResumeAuto, { passive: true });
+  listEl.addEventListener('mousedown', urPauseAuto);
+  listEl.addEventListener('mouseup', urResumeAuto);
+
+  var urSection = document.getElementById('userReviews');
+  if (urSection) {
+    urSection.addEventListener('mouseenter', function(){
+      urIsInteracting = true;
+      urStopAutoSlide();
+    });
+    urSection.addEventListener('mouseleave', function(){
+      urIsInteracting = false;
+      urRestartAutoSlide();
+    });
+  }
+
+  var urWasMobile = window.innerWidth < 1024;
+  window.addEventListener('resize', function(){
+    var isMobileNow = window.innerWidth < 1024;
+    if (isMobileNow !== urWasMobile){
+      urWasMobile = isMobileNow;
+      urGoToPageAuto(0);
+    }
+  });
+
+  function urInitAutoSlide(){
+    urCurrentPage = 0;
+    urGoToPageAuto(0);
+    urStartAutoSlide();
+  }
 })();
  

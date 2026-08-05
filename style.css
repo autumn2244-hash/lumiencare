@@ -1571,12 +1571,14 @@ video {
 /* ── 직접 작성 후기 목록: 모바일은 가로 스와이프(1개씩), 데스크톱은 3열 그리드 ── */
 .ur-review-list{
   display:flex;
+  align-items:flex-start;
+  gap:1.25rem;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
-  gap:1.25rem;
   padding-bottom:.5rem;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
+  scroll-behavior:smooth; 
 }
 .ur-review-list::-webkit-scrollbar{
   display:none;
