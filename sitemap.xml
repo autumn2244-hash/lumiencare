@@ -6,7 +6,7 @@
 
 <loc>https://lumiencares.com/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -18,7 +18,7 @@
 
 <loc>https://lumiencares.com/jeonggi/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -30,7 +30,7 @@
 
 <loc>https://lumiencares.com/jeonggi/samulsil/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -42,7 +42,7 @@
 
 <loc>https://lumiencares.com/jeonggi/byeongwon/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -54,7 +54,7 @@
 
 <loc>https://lumiencares.com/jeonggi/sangga/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -66,7 +66,7 @@
 
 <loc>https://lumiencares.com/jeonggi/hagwon/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -78,7 +78,7 @@
 
 <loc>https://lumiencares.com/jeonggi/samulsil/yangju/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -90,7 +90,7 @@
 
 <loc>https://lumiencares.com/jeonggi/byeongwon/uijeongbu/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -102,7 +102,7 @@
 
 <loc>https://lumiencares.com/jeonggi/yangju/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -114,7 +114,7 @@
 
 <loc>https://lumiencares.com/jeonggi/namyangju/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -126,7 +126,7 @@
 
 <loc>https://lumiencares.com/jeonggi/uijeongbu/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -138,7 +138,7 @@
 
 <loc>https://lumiencares.com/jeonggi/guri/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -150,7 +150,7 @@
 
 <loc>https://lumiencares.com/jeonggi/dongducheon/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -162,7 +162,7 @@
 
 <loc>https://lumiencares.com/jeonggi/dobong/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
@@ -174,11 +174,263 @@
 
 <loc>https://lumiencares.com/jeonggi/nowon/</loc>
 
-<lastmod>2026-10-10</lastmod>
+<lastmod>2026-10-16</lastmod>
 
 <changefreq>weekly</changefreq>
 
 <priority>0.8</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/yangju/okjeongdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/yangju/goeupdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/yangju/deokjeongdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/namyangju/dasandong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/namyangju/byeollaedong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/namyangju/hopyeongdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/uijeongbu/ganeungdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/uijeongbu/songsandong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/uijeongbu/nogyangdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/guri/gyomundong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/guri/sutaekdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/guri/inchangdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/dongducheon/saengyeondong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/dongducheon/bosandong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/dobong/changdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/dobong/ssangmundong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/dobong/banghakdong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/nowon/sanggyedong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/nowon/junggyedong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/nowon/hagyedong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
+
+</url>
+
+<url>
+
+<loc>https://lumiencares.com/jeonggi/nowon/wolgyedong/</loc>
+
+<lastmod>2026-10-16</lastmod>
+
+<changefreq>weekly</changefreq>
+
+<priority>0.7</priority>
 
 </url>
 
