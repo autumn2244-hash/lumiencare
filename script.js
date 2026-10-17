@@ -397,6 +397,20 @@ function openCleanCaseGallery(filterCategory) {
   }
   mobileToggle.addEventListener('click', function(){ setMobileOpen(!mobileOpen); });
 
+  // ── 데스크톱 정기청소 드롭다운 ──
+  (function(){
+    var wrap = document.getElementById('navJeonggiWrap');
+    var drop = document.getElementById('navJeonggiDrop');
+    if (!wrap || !drop) return;
+    var hideTimer = null;
+    function show(){ clearTimeout(hideTimer); drop.style.display = 'block'; }
+    function hide(){ hideTimer = setTimeout(function(){ drop.style.display = 'none'; }, 180); }
+    wrap.addEventListener('mouseenter', show);
+    wrap.addEventListener('mouseleave', hide);
+    drop.addEventListener('mouseenter', show);
+    drop.addEventListener('mouseleave', hide);
+  })();
+
   // ── 부드러운 스크롤 이동 (nav / footer / hero 버튼 공용) ──
   function go(href){
     var target = document.querySelector(href);

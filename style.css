@@ -1660,3 +1660,13 @@ video {
   border-top:1px solid rgba(59,42,26,0.06);
 }
 body.lc-modal-open{ overflow:hidden; }
+/* ── 개편 추가: 데스크톱에서 모바일 토글 숨김 (lg:hidden 우선순위 fix) ── */
+@media (min-width:1024px){
+  #mobileToggle{ display:none !important; }
+}
+/* ── 개편 추가: 정기청소 드롭다운 ── */
+#navJeonggiDrop a{ transition:background .15s; }
+/* ── 개편 추가: 플로팅 전화 버튼 (모바일 하단바) ── */
+@media (max-width:1023px){
+  #floatPhoneBtn{ width:56px; height:56px; right:16px; bottom:16px; }
+}
