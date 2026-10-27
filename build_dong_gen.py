@@ -109,8 +109,6 @@ def render_page(region_slug, region_name, dong_slug, dong_name, desc, intro,
     def section_faq():
         faqs = [
             (f"{dong_name} 어디까지 방문하나요?", f"{areas} {nearby}"),
-            ("출장비가 따로 있나요?",
-             f"{region_name} 지역은 별도 출장비 없이 견적에 포함됩니다. 인근 지역은 거리와 주기에 따라 협의합니다."),
             ("견적은 어떻게 받나요?",
              "전화로 평수·주기·범위를 확인해 대략적인 범위를 안내해 드리고, 현장 실사 후 확정 견적을 드립니다. 실사는 무료입니다."),
             extra_faq,
@@ -262,21 +260,9 @@ def main():
         open(p, "w", encoding="utf-8").write(src)
         print("patched hub:", region_slug)
 
-    # 3. sitemap.xml 36개 URL로 재생성
-    urls = [("/", "1.0"), ("/jeonggi/", "0.9")]
-    for href, _ in FOOTER_LINKS[1:]:
-        urls.append((href, "0.8"))
-    for d in DONGS:
-        urls.append((f"/jeonggi/{d[0]}/{d[2]}/", "0.7"))
-    out = ['<?xml version="1.0" encoding="UTF-8"?>', '',
-           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', '']
-    for path, pr in urls:
-        out += ["<url>", "", f"<loc>https://lumiencares.com{path}</loc>", "",
-                "<lastmod>2026-10-16</lastmod>", "", "<changefreq>weekly</changefreq>",
-                "", f"<priority>{pr}</priority>", "", "</url>", ""]
-    out.append("</urlset>")
-    open(os.path.join(REPO, "sitemap.xml"), "w", encoding="utf-8").write("\n".join(out))
-    print("sitemap URLs:", len(urls))
+    # 3. sitemap.xml은 건드리지 않는다 (2026-10-28: 64개 URL 수동 관리.
+    #    구버전 로직은 36개로 재생성해 지역×업종 26개+소파/에어컨을 지워버리므로 비활성화)
+    print("sitemap untouched (managed manually)")
 
 
 if __name__ == "__main__":
